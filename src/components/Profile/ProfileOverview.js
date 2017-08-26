@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 
 import { determineClass } from './helpers';
-
+// eslint-disable-next-line
 import ProfileGear from './ProfileGear';
 import ProfileTalents from './ProfileTalents';
 import ProfileStatistics from './ProfileStatistics';

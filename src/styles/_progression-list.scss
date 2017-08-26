@@ -1,5 +1,62 @@
+.progression-container{
+  .raid-wrapper+.raid-wrapper{
+    padding-top: 10px;
+    margin-top: 10px;
+    border-top: 1px solid $cement;
+  }
+}
+
 .progression-list{
   list-style-type: none;
   margin: 0;
   padding: 0;
+  h4{
+    font-family: $montserrat;
+    margin: 0 auto 10px;
+  }
+  .prog-bar{
+    display: flex;
+    align-items: center;
+    &.prog-bar{
+      margin-top: 10px;
+    }
+  }
+  i.total{
+    font-family: $montserrat;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: bold;
+    text-rendering: optimizeLegibility;
+    float: right;
+    margin-right: 5px;
+  }
+  .bar-label{
+    font-family: $lato;
+    font-weight: 200;
+    width: 100px;
+    text-transform: capitalize;
+  }
+  .bar{
+    flex: 1 0 auto;
+    position: relative;
+    height: 30px;
+    background-color: $slate;
+    border: 1px solid $slate;
+    display: flex;
+    .boss{
+      flex: 1 0 auto;
+      background-color: lighten($slate, 10);
+      height: 100%;
+      &+.boss{
+        margin-left: 1px;
+      }
+    }
+
+    &.complete .killed{
+      background-color: #98E28E;
+    }
+    &.incomplete .killed{
+      background-color: #B4654A;
+    }
+  }
 }

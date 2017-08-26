@@ -79,9 +79,10 @@ export function determineClass(characterClass, talents) {
 
 export function determineProgression(raid) {
   const bossKills = raid.bosses.map((boss, i) => {
-    return ({'name': boss.name, 'normal': boss.normalKills, 'heroic': boss.heroicKills, 'mythic': boss.mythicKills})
+    return ({'name': boss.name, 'lfr': boss.lfrKills, 'normal': boss.normalKills, 'heroic': boss.heroicKills, 'mythic': boss.mythicKills})
   });
 
+  const lfrProgression = bossKills.filter(boss => boss.lfr >= 1).length
   const normalProgression = bossKills.filter(boss => boss.normal >= 1).length
   const heroicProgression = bossKills.filter(boss => boss.heroic >= 1).length
   const mythicProgression = bossKills.filter(boss => boss.mythic >= 1).length
@@ -89,6 +90,7 @@ export function determineProgression(raid) {
   const progression = {
     bossKills: bossKills,
     bosses: raid.bosses.length,
+    lfrProgression: lfrProgression,
     normalProgression: normalProgression,
     heroicProgression: heroicProgression,
     mythicProgression: mythicProgression
