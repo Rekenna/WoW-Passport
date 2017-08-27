@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Tooltip, OverlayTrigger} from 'react-bootstrap';
 
-import { determineProgression } from './helpers';
+import {determineProgression} from './helpers';
 
 var numeral = require('numeral');
 
@@ -10,12 +10,14 @@ export default class ProfileProgression extends Component {
     super(props);
 
     this.state = {
-      currentRaids: [8524, 8025, 8440, 8026],
+      currentRaids: [
+        8524, 8025, 8440, 8026
+      ],
       totalBossKills: numeral(0)
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
 
     const currentRaids = this.props.progression.filter(raid => this.state.currentRaids.includes(raid.id));
 
@@ -28,7 +30,6 @@ export default class ProfileProgression extends Component {
         bossKills.add(kills)
       }
     }
-
 
     this.setState({
       totalBossKills: this.state.totalBossKills.add(bossKills.value())
@@ -61,79 +62,104 @@ export default class ProfileProgression extends Component {
 
     return (
       <div className="profile-overview progression-container">
-        <header><strong>Legion Progression</strong><span><i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')} Boss Kills</span></header>
+        <header>
+          <strong>Legion Progression</strong>
+          <span>
+            <i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')}
+            Boss Kills</span>
+        </header>
         <ul className="progression-list">
           {currentProgression}
         </ul>
         <ul className="legacy-progression-list">
           {legacyProgression}
         </ul>
-    </div>
+      </div>
     );
   }
 
 }
 
-class ProgressionBar extends Component{
+class ProgressionBar extends Component {
 
-  _createTooltip(boss, numKills){
-    if(numKills === undefined){
+  _createTooltip(boss, numKills) {
+    if (numKills === undefined) {
       numKills = 0
     }
-    return <Tooltip id={`${boss.id}-tooltip`}>
-     <strong>{boss.name}: </strong>
-     {numKills} Kills</Tooltip>
+    return(
+      <Tooltip id={`${boss.id}-tooltip`}>
+        <strong>{boss.name}:</strong><span className="kills"> {numKills} Kills</span>
+      </Tooltip>
+    )
   }
 
-  render(){
+  render() {
     const {raid, progression, difficulty} = this.props;
 
     const numBosses = raid.bosses.length
 
-    let killed;
-    let complete;
-    switch (difficulty) {
-      case "mythic":
-        killed = progression.mythicProgression
-        complete = numeral(progression.mythicProgression/numBosses)
-        break;
-      case "heroic":
-        killed = progression.heroicProgression
-        complete = numeral(progression.heroicProgression/numBosses)
-        break;
-      case "normal":
-        killed = progression.normalProgression
-        complete = numeral(progression.normalProgression/numBosses)
-        break;
-      case "lfr":
-        killed = progression.lfrProgression
-        complete = numeral(progression.lfrProgression/numBosses)
-        break;
-      default:
-    }
-
     let progress;
-    progress = progression.bossKills.map((boss, i) =>{
-      if(i < killed){
-        return(
-          <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
-            <div className="boss killed"></div>
-          </OverlayTrigger>
-        )
+    let killed;
+    progress = progression.bossKills.map((boss, i) => {
+
+      switch (difficulty) {
+        case "mythic":
+          killed = progression.mythicProgression
+          return (
+            <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
+              <div className={`boss ${boss.mythic > 0
+                ? 'killed'
+                : ''}`}></div>
+            </OverlayTrigger>
+          );
+        case "heroic":
+          killed = progression.heroicProgression
+          return (
+            <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
+              <div className={`boss ${boss.heroic > 0
+                ? 'killed'
+                : ''}`}></div>
+            </OverlayTrigger>
+          );
+        case "normal":
+          killed = progression.normalProgression
+          return (
+            <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
+              <div className={`boss ${boss.normal > 0
+                ? 'killed'
+                : ''}`}></div>
+            </OverlayTrigger>
+          );
+        case "lfr":
+          killed = progression.lfrProgression
+
+          return (
+            <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
+              <div className={`boss ${boss.lfr > 0
+                ? 'killed'
+                : ''}`}></div>
+            </OverlayTrigger>
+          );
+        default:
+          return (
+            <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
+              <div className="boss"></div>
+            </OverlayTrigger>
+          );
       }
-      else{
-        return(
-          <OverlayTrigger key={`${boss.id}-bar-${i}`} placement="bottom" overlay={this._createTooltip(boss, boss[difficulty])}>
-            <div className="boss"></div>
-          </OverlayTrigger>
-        )
-      }
+
     });
 
-    return(
+    return (
       <div className="prog-bar">
-        <span className="bar-label">{difficulty}<i className="total">{killed ? killed : '0'}/{numBosses}</i></span>
-        <div className={`bar ${complete.value() === 1 ? 'complete' : 'incomplete'}`}>
+        <span className="bar-label">{difficulty}
+          <i className="total">{killed > 0
+              ? killed
+              : '0'}/{numBosses}</i>
+        </span>
+        <div className={`bar ${killed === numBosses
+          ? 'complete'
+          : 'incomplete'}`}>
           {progress}
         </div>
       </div>
@@ -144,12 +170,12 @@ class ProgressionBar extends Component{
 
 class ProgressionItem extends Component {
 
-  render(){
+  render() {
     const raid = this.props.raid;
 
     const progression = this.props.progression;
 
-    return(
+    return (
       <div className="raid">
         <div className="row">
           <div className="col-md-12 flex-header">
@@ -168,7 +194,7 @@ class ProgressionItem extends Component {
 }
 
 class LegacyProgressionItem extends Component {
-  render(){
+  render() {
 
     const raid = this.props.raid
 
@@ -177,16 +203,17 @@ class LegacyProgressionItem extends Component {
     if (raid.lfr > 0 || raid.normal > 0 || raid.heroic > 0 || raid.mythic > 0) {
       progress = "complete"
       icon = "fa fa-check"
-    }
-    else{
+    } else {
       progress = "incomplete"
       icon = "fa fa-close"
     }
 
-    return(
+    return (
       <div className="legacy-raid">
         <h5>
-          <span className={`status ${progress}`}><i className={icon}></i></span>
+          <span className={`status ${progress}`}>
+            <i className={icon}></i>
+          </span>
           <i className="name">{raid.name}</i>
         </h5>
       </div>
