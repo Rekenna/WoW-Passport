@@ -7,6 +7,7 @@ import ProfileProgression from './ProfileProgression';
 import WarcraftLogs from './WarcraftLogs';
 
 var moment = require('moment');
+var numeral = require('numeral');
 
 export default class ProfileContainer extends Component {
   render(props){
@@ -19,6 +20,22 @@ export default class ProfileContainer extends Component {
     const lastLogout = moment(character.lastModified).format("MMM Do YYYY, h:mm A")
 
     const currentTier = character.progression.raids.reverse()[0];
+
+    let normalProg = numeral(0);
+    let heroicProg = numeral(0);
+    let mythicProg = numeral(0);
+
+    currentTier.bosses.map((boss) => {
+      return normalProg.add(boss.normalKills > 0 ? 1 : 0)
+    });
+
+    currentTier.bosses.map((boss) => {
+      return heroicProg.add(boss.heroicKills > 0 ? 1 : 0)
+    });
+
+    currentTier.bosses.map((boss) => {
+      return mythicProg.add(boss.mythicKills > 0 ? 1 : 0)
+    });
 
     return(
       <div className="profile-container">
@@ -48,9 +65,9 @@ export default class ProfileContainer extends Component {
         <div className="player-information">
           <div className="pve">
             <ul>
-              <li><span>{currentTier.normal}/{currentTier.bosses.length}</span><i>Normal</i></li>
-              <li><span>{currentTier.heroic}/{currentTier.bosses.length}</span><i>Heroic</i></li>
-              <li><span>{currentTier.mythic}/{currentTier.bosses.length}</span><i>Mythic</i></li>
+              <li><span>{normalProg.value()}/{currentTier.bosses.length}</span><i>Normal</i></li>
+              <li><span>{heroicProg.value()}/{currentTier.bosses.length}</span><i>Heroic</i></li>
+              <li><span>{mythicProg.value()}/{currentTier.bosses.length}</span><i>Mythic</i></li>
             </ul>
           </div>
           <div className="ilvl">
