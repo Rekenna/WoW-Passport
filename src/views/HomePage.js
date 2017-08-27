@@ -1,8 +1,13 @@
 import React, {Component} from 'react';
 
-import RealmList from '../components/RealmList';
+import RealmList from '../components/Layout/RealmList';
 
 export default class HomePage extends Component{
+
+  componentWillMount(){
+    document.title = "WoW Passport - Player Lookup and Analysis";
+  }
+
   render(){
     return(
       <div className="home-page">

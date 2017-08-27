@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 
 export default class NotFound extends Component{
+
+  componentWillMount(){
+    document.title = "404 - WoW Passport";
+  }
+
   render(props){
     return(
       <div className="profile-container loading">

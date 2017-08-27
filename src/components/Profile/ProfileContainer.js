@@ -4,6 +4,9 @@ import { determineClass, determineRace } from './helpers';
 
 import ProfileOverview from './ProfileOverview';
 import ProfileProgression from './ProfileProgression';
+import WarcraftLogs from './WarcraftLogs';
+
+var moment = require('moment');
 
 export default class ProfileContainer extends Component {
   render(props){
@@ -12,26 +15,35 @@ export default class ProfileContainer extends Component {
     const characterClass = determineClass(character.class, character.talents);
     const armoryLink = getArmoryLink(region, character.name, character.realm);
     const race = determineRace(character.race)
-    // const faction = determineFaction(character.faction)
+
+    const lastLogout = moment(character.lastModified).format("MMM Do YYYY, h:mm A")
 
     const currentTier = character.progression.raids.reverse()[0];
 
     return(
       <div className="profile-container">
         <div className={`profile-header ${character.faction ? 'horde' : 'alliance'}`}>
-          <div className="avatar-container">
-            <div className="img-wrapper">
-              <img className="avatar" src={`https://render-${region}.worldofwarcraft.com/character/${character.thumbnail}`} alt={`${character.name} thumbnail`}/>
-              <p>{character.level}</p>
+          <div className="profile-header-content animated fadeIn">
+            <div className="avatar-container">
+              <div className="img-wrapper">
+                <img className="avatar" src={`https://render-${region}.worldofwarcraft.com/character/${character.thumbnail}`} alt={`${character.name} thumbnail`}/>
+                <p>{character.level}</p>
+              </div>
+              <div className="character">
+                <h2>{character.name}</h2>
+                <p>
+                  {race} {characterClass.talents.spec.name} {characterClass.spec}
+                </p>
+                <p className="realm">
+                  {character.guild !== undefined ? `${character.guild.name} | ` : ''}{character.realm}
+                </p>
+              </div>
             </div>
-            <div className="character">
-              <h2>{character.name}</h2>
-              <p>
-                {race} {characterClass.talents.spec.name} {characterClass.spec}
-              </p>
-              <a href={armoryLink} className="armory-link" target="_blank">View Armory <i className="fa fa-external-link"></i></a>
+            <div className="actions">
+              <a href={armoryLink} className="armory-link" target="_blank">Armory <i className="fa fa-external-link"></i></a>
             </div>
           </div>
+          <p className="last-modified"><small>Last Online/Update:</small><br/> {lastLogout}</p>
         </div>
         <div className="player-information">
           <div className="pve">
@@ -63,12 +75,15 @@ export default class ProfileContainer extends Component {
           <div className="row">
             <div className="col-md-8">
               <section className="profile-column">
-                <ProfileOverview character={character}/>
+                <ProfileOverview {...this.props}/>
+              </section>
+              <section className="profile-column">
+                <ProfileProgression progression={character.progression.raids} />
               </section>
             </div>
             <div className="col-md-4">
               <section className="profile-column">
-                <ProfileProgression progression={character.progression.raids} />
+                <WarcraftLogs {...this.props}/>
               </section>
             </div>
           </div>

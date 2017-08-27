@@ -17,15 +17,25 @@ class ProfilePage extends Component{
       progress: 'loading',
       player: null
     }
+
+    this._updatePageTitle = this._updatePageTitle.bind(this)
   }
 
   componentWillReceiveProps(nextProps){
     this.setState({progress: 'loading'})
+    this._updatePageTitle(this.props.match.params)
     this._searchForPlayer(nextProps.match.params)
   }
 
   componentDidMount(){
     this._searchForPlayer(this.props.match.params)
+    this._updatePageTitle(this.props.match.params)
+  }
+
+  _updatePageTitle(params){
+    const character = params.character;
+    console.log(params)
+    document.title = `${character.charAt(0).toUpperCase() + character.slice(1)} - WoW Passport`;
   }
 
   _searchForPlayer(params){
@@ -39,8 +49,14 @@ class ProfilePage extends Component{
         fields: 'stats,talents,statistics,guild,items,progression,pvp,feed,acheivements'
       }
     }).then(function(response) {
-      console.log(response.data)
-      self.setState({player: response.data, progress: 'done', region: region})
+      let data = response.data
+      console.log(data)
+      if (Object.keys(data).length === 0 && data.constructor === Object) {
+        self.setState({player: null, progress: 'error', region: region})
+      }
+      else{
+        self.setState({player: response.data, progress: 'done', region: region})
+      }
     }).catch(function(error) {
       console.log(error);
       self.setState({player: null, progress: 'error', region: region})

@@ -1,0 +1,86 @@
+// Gear Colors
+$poor: #9d9d9d;
+$common: #ffffff;
+$uncommon: #1eff00;
+$rare: #0070dd;
+$epic: #a335ee;
+$legendary: #ff8000;
+$heirloom: #00ccff;
+
+.appearance-wrapper{
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid $space;
+  .content{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    box-shadow: inset 0px 0px 100px 30px rgba($space, .75);
+    z-index: 3;
+  }
+  img{
+    width: 100%;
+    height: auto;
+  }
+}
+
+
+ul.gear-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  .gear-piece{
+    display: inline-block;
+    border-radius: 5px;
+    &.poor{
+      border: 1px solid $poor;
+    }
+    &.common{
+      border: 1px solid $common;
+    }
+    &.uncommon{
+      border: 1px solid $uncommon;
+    }
+    &.rare{
+      border: 1px solid $rare;
+    }
+    &.epic{
+      border: 1px solid $epic;
+    }
+    &.legendary{
+      border: 1px solid $legendary;
+    }
+    &.heirloom{
+      border: 1px solid $heirloom;
+    }
+  }
+  img{
+    border-radius: 5px;
+    max-width: 40px;
+    height: auto;
+  }
+}
+
+ul.talent-list{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  li{
+    display: inline-block;
+    margin-left: 3px;
+  }
+  img{
+    width: 30px;
+    height: 30px;
+    border-radius: 2px;
+  }
+  .talent img{
+    border: 1px solid $cherry;
+  }
+}

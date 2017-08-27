@@ -60,19 +60,6 @@ export default class SearchResults extends Component{
     }).then(function(response) {
       console.log(response.data)
       self.setState({results: self.state.results.concat([response.data]), progress: 'done', region: region})
-
-      // let objects = [{
-      //   firstname: 'Jimmie',
-      //   lastname: 'Barninger'
-      // }, {
-      //   firstname: 'Warren',
-      //   lastname: 'Speach'
-      // }];
-      //
-      // index.addObjects(objects, function(err, content) {
-      //   console.log(content);
-      // });
-
     }).catch(function(error) {
       console.log(error);
       self.setState({region: region})

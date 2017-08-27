@@ -35,19 +35,6 @@ export default class ProfileProgression extends Component {
       totalBossKills: this.state.totalBossKills.add(bossKills.value())
     })
 
-    // let totalKills = currentRaids.map((raid) =>{
-    //   let bossKills;
-    //   for (var i = 0; i < raid.bosses.length; i++) {
-    //     let boss = raid.bosses[i]
-    //     console.log(boss)
-    //     bossKills = boss.lfrKills + boss.normalKills + boss.heroicKills + boss.mythicKills
-    //   }
-    //   self.setState({
-    //     totalBossKills: self.state.totalBossKills.add(bossKills)
-    //   })
-    //   return console.log(self.state.totalBossKills)
-    // })
-
   }
 
   render(props) {
@@ -65,7 +52,7 @@ export default class ProfileProgression extends Component {
 
     return (
       <div className="profile-overview progression-container">
-        <header><strong>Progression</strong><span><i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')} Boss Kills</span></header>
+        <header><strong>Legion Progression</strong><span><i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')} Boss Kills</span></header>
         <ul className="progression-list">
           {progression}
         </ul>
