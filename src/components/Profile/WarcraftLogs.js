@@ -35,7 +35,7 @@ export default class WarcraftLogs extends Component{
     }).then(function(response) {
       self.setState({logs: response.data, loaded: true, error: false})
     }).catch(function(error) {
-      console.log(error);
+      // console.log(error);
       self.setState({logs: {}, loaded: false, error: true})
     });
   }

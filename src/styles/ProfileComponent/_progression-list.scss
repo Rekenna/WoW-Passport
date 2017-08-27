@@ -1,3 +1,6 @@
+$complete: #98E28E;
+$incomplete: #B4654A;
+
 .progression-container{
   .raid-wrapper+.raid-wrapper{
     padding-top: 10px;
@@ -28,12 +31,12 @@
     font-weight: bold;
     text-rendering: optimizeLegibility;
     float: right;
-    margin-right: 5px;
   }
   .bar-label{
     font-family: $lato;
     font-weight: 200;
     width: 100px;
+    margin-right: 10px;
     text-transform: capitalize;
   }
   .bar{
@@ -53,10 +56,61 @@
     }
 
     &.complete .killed{
-      background-color: #98E28E;
+      background-color: $complete;
     }
     &.incomplete .killed{
-      background-color: #B4654A;
+      background-color: $incomplete;
+    }
+  }
+}
+
+ul.legacy-progression-list{
+  margin-top: 15px;
+  list-style-type: none;
+  border: 1px solid $cement;
+  background-color: lighten($cement, 15);
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  padding: 0;
+  flex-wrap: wrap;
+  li.legacy-raid{
+    width: 25%;
+    min-width: 120px;
+  }
+  .status{
+    display: inline-block;
+    height: 25px;
+    width: 25px;
+    flex: 0 0 25px;
+    border-radius: 50%;
+    position: relative;
+    &.complete{
+      background-color: $complete;
+    }
+    &.incomplete{
+      background-color: $incomplete;
+    }
+    .fa{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: $white;
+    }
+  }
+  h5{
+    font-style: $lato;
+    font-weight: 300;
+    color: $slate;
+    margin: 0;
+    min-height: 25px;
+    padding: 10px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    .name{
+      margin-left: 10px;
     }
   }
 }

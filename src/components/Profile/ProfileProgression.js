@@ -18,7 +18,6 @@ export default class ProfileProgression extends Component {
   componentDidMount(){
 
     const currentRaids = this.props.progression.filter(raid => this.state.currentRaids.includes(raid.id));
-    // const legacyRaids = this.props.progression.filter(raid => !this.state.currentRaids.includes(raid.id));
 
     let bossKills = numeral(0);
     for (var i = 0; i < currentRaids.length; i++) {
@@ -40,12 +39,22 @@ export default class ProfileProgression extends Component {
   render(props) {
 
     const currentRaids = this.props.progression.filter(raid => this.state.currentRaids.includes(raid.id));
+    const legacyRaids = this.props.progression.filter(raid => !this.state.currentRaids.includes(raid.id));
 
-    let progression;
-    progression = currentRaids.map((raid, i) => {
+    let currentProgression;
+    currentProgression = currentRaids.map((raid, i) => {
       return (
-        <li key={i} className="raid-wrapper">
+        <li key={raid.id} className="raid-wrapper">
           <ProgressionItem raid={raid} progression={determineProgression(raid)}/>
+        </li>
+      );
+    });
+
+    let legacyProgression;
+    legacyProgression = legacyRaids.map((raid, i) => {
+      return (
+        <li key={raid.id} className="legacy-raid">
+          <LegacyProgressionItem raid={raid}/>
         </li>
       );
     });
@@ -54,17 +63,15 @@ export default class ProfileProgression extends Component {
       <div className="profile-overview progression-container">
         <header><strong>Legion Progression</strong><span><i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')} Boss Kills</span></header>
         <ul className="progression-list">
-          {progression}
+          {currentProgression}
+        </ul>
+        <ul className="legacy-progression-list">
+          {legacyProgression}
         </ul>
     </div>
     );
   }
 
-
-  _changeRaidDisplay(e){
-    e.preventDefault()
-    this.setState({raidsListed: this._raids.value})
-  }
 }
 
 class ProgressionBar extends Component{
@@ -139,6 +146,7 @@ class ProgressionItem extends Component {
 
   render(){
     const raid = this.props.raid;
+
     const progression = this.props.progression;
 
     return(
@@ -154,6 +162,33 @@ class ProgressionItem extends Component {
             </div>
           </div>
         </div>
+      </div>
+    );
+  }
+}
+
+class LegacyProgressionItem extends Component {
+  render(){
+
+    const raid = this.props.raid
+
+    let progress;
+    let icon;
+    if (raid.lfr > 0 || raid.normal > 0 || raid.heroic > 0 || raid.mythic > 0) {
+      progress = "complete"
+      icon = "fa fa-check"
+    }
+    else{
+      progress = "incomplete"
+      icon = "fa fa-close"
+    }
+
+    return(
+      <div className="legacy-raid">
+        <h5>
+          <span className={`status ${progress}`}><i className={icon}></i></span>
+          <i className="name">{raid.name}</i>
+        </h5>
       </div>
     );
   }

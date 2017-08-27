@@ -6,42 +6,92 @@ export default class ProfileGear extends Component {
   render(){
 
     const items = this.props.items;
+    const itemsKeys = Object.keys(items)
 
     let equippedGear = [];
-
-    for(var prop in items){
-      let item = items[prop]
-      if(item.id !== undefined){
-        equippedGear.push(item)
+    equippedGear = itemsKeys.map((key, i) => {
+      if(key !== 'averageItemLevel' && key !== 'averageItemLevelEquipped'){
+        return({slot: key, data: items[key]})
       }
-    }
-
-
-    let gearList = equippedGear.map((item, i) => {
-      return(this._compileGearPiece(item));
+      else{
+        return undefined
+      }
     });
+    equippedGear = equippedGear.filter(item => item !== undefined)
 
     return(
-      <ul className="gear-list">
-        {gearList}
-      </ul>
+      <div className="profile-gear">
+        <GearList gear={equippedGear}/>
+      </div>
+    );
+  }
+}
+
+class GearList extends Component{
+
+  render(){
+
+    const gear = this.props.gear
+
+    let leftList = this._filterGearSlots(gear, ['head', 'neck', 'shoulder', 'back', 'chest', 'shirt', 'tabard', 'wrist'], 'left', this._compileGearPiece.bind(this), this._getItemQuality.bind(this))
+    let rightList = this._filterGearSlots(gear, ['hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2'], 'right', this._compileGearPiece.bind(this), this._getItemQuality.bind(this))
+    let centerList = this._filterGearSlots(gear, ['mainHand', 'offHand'], 'center', this._compileGearPiece.bind(this), this._getItemQuality.bind(this))
+
+    return(
+      <div className="gear-grid">
+        {leftList}
+        {centerList}
+        {rightList}
+      </div>
     );
   }
 
-  _compileGearPiece(item){
+  _filterGearSlots(gearPieces, locations, position, compileGearPiece, getItemQuality){
+    let tooltipPosition;
+    if(position === 'center'){
+      tooltipPosition = 'top'
+    }
+    else if (position === 'left') {
+      tooltipPosition = 'right'
+    }
+    else{
+      tooltipPosition = 'left'
+    }
 
-    let tooltip = <Tooltip id={`${item.id}-tooltip`}>
-      <strong>{item.name}</strong></Tooltip>;
+    let gearList = gearPieces.map((piece, i) => {
+      if(locations.includes(piece.slot)){
+        return piece.data
+      }
+      else{
+        return false
+      }
+    }).filter(piece => piece)
+
+    let listedSlots = gearList.map((piece, i) => {
+      return(
+        compileGearPiece(piece, tooltipPosition, getItemQuality(piece.quality))
+      )
+    });
+
+    return(
+      <ul className={`gear-list ${position}`}>
+        {listedSlots}
+      </ul>
+    )
+  }
+
+  _compileGearPiece(item, tooltipPosition, quality){
+
+    let tooltip = (
+      <Tooltip id={`${item.id}-tooltip`} className={`tooltip ${tooltipPosition} ${quality}`}>
+        <h5>{item.name}</h5>
+      </Tooltip>
+    );
 
     return (
-      <OverlayTrigger key={item.id} placement="left" overlay={tooltip}>
-        <li key={item.id} className={`gear-piece ${this._getItemQuality(item.quality)}`}>
-          <div className="gear-image">
-            <img src={`https://render-us.worldofwarcraft.com/icons/56/${item.icon}.jpg`} alt=""/>
-          </div>
-          <div className="gear-content">
-
-          </div>
+      <OverlayTrigger key={item.id} placement={tooltipPosition} overlay={tooltip}>
+        <li key={item.id} className={`gear-piece ${this._getItemQuality(item.quality)} tooltip-${tooltipPosition}`}>
+          <img src={`https://render-us.worldofwarcraft.com/icons/56/${item.icon}.jpg`} alt={item.name}/>
         </li>
       </OverlayTrigger>
     );

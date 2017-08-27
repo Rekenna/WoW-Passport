@@ -5,82 +5,202 @@ $uncommon: #1eff00;
 $rare: #0070dd;
 $epic: #a335ee;
 $legendary: #ff8000;
+$artifact: #e6cc80;
 $heirloom: #00ccff;
 
-.appearance-wrapper{
+.appearance-wrapper {
   width: 100%;
   height: auto;
   position: relative;
   border-radius: 5px;
   overflow: hidden;
   border: 1px solid $space;
-  .content{
+
+  .content {
     position: absolute;
     top: 0;
     left: 0;
     height: 100%;
     width: 100%;
-    box-shadow: inset 0px 0px 100px 30px rgba($space, .75);
+    box-shadow: inset 0 0 100px 30px rgba($space, .75);
     z-index: 3;
   }
-  img{
+
+  img {
     width: 100%;
     height: auto;
   }
 }
 
+.gear-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-ul.gear-list{
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  .gear-piece{
-    display: inline-block;
-    border-radius: 5px;
-    &.poor{
-      border: 1px solid $poor;
+  .gear-list.center {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .gear-piece {
+      margin: 0 5px;
     }
-    &.common{
-      border: 1px solid $common;
-    }
-    &.uncommon{
-      border: 1px solid $uncommon;
-    }
-    &.rare{
-      border: 1px solid $rare;
-    }
-    &.epic{
-      border: 1px solid $epic;
-    }
-    &.legendary{
-      border: 1px solid $legendary;
-    }
-    &.heirloom{
-      border: 1px solid $heirloom;
-    }
-  }
-  img{
-    border-radius: 5px;
-    max-width: 40px;
-    height: auto;
   }
 }
 
-ul.talent-list{
+ul.gear-list {
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+
+  &.left img,
+  &.right img {
+    margin: 5px 0 5px auto;
+  }
+
+  &.right .gear-piece {
+    text-align: right;
+  }
+
+  &.center img {
+    margin: auto;
+  }
+
+  img {
+    border-radius: 5px;
+    max-width: 40px;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  .gear-piece {
+    max-width: 100%;
+    display: block;
+
+    &.poor img {
+      border: 1px solid $poor;
+    }
+
+    &.common img {
+      border: 1px solid $common;
+    }
+
+    &.uncommon img {
+      border: 1px solid $uncommon;
+    }
+
+    &.rare img {
+      border: 1px solid $rare;
+    }
+
+    &.epic img {
+      border: 1px solid $epic;
+    }
+
+    &.legendary img {
+      border: 1px solid $legendary;
+    }
+
+    &.artifact img {
+      border: 1px solid $artifact;
+    }
+
+    &.heirloom img {
+      border: 1px solid $heirloom;
+    }
+  }
+}
+
+ul.talent-list {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
   list-style-type: none;
   padding: 0;
   margin: 0;
   text-align: right;
-  li{
+
+  li {
     display: inline-block;
     margin-left: 3px;
   }
-  img{
+
+  img {
     width: 30px;
     height: 30px;
     border-radius: 2px;
   }
-  .talent img{
+
+  .talent img {
     border: 1px solid $cherry;
+  }
+}
+
+.tooltip {
+  .tooltip-inner{
+    max-width: 300px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: left;
+    background-color: #000;
+    border-radius: 4px;
+  }
+  h5{
+    font-size: 1.1em;
+  }
+  &.poor {
+    h5 {
+      color: $poor;
+    }
+  }
+
+  &.common {
+    h5 {
+      color: $common;
+    }
+  }
+
+  &.uncommon {
+    h5 {
+      color: $uncommon;
+    }
+  }
+
+  &.rare {
+    h5 {
+      color: $rare;
+    }
+  }
+
+  &.epic {
+    h5 {
+      color: $epic;
+    }
+  }
+
+  &.legendary {
+    h5 {
+      color: $legendary;
+    }
+  }
+
+  &.artifact {
+    h5 {
+      color: $artifact;
+    }
+  }
+
+  &.heirloom {
+    h5 {
+      color: $heirloom;
+    }
   }
 }

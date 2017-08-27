@@ -40,9 +40,9 @@ export default class ProfileOverview extends Component{
                 <img id="character-render" src={`//render-us.worldofwarcraft.com/character/${(character.thumbnail.split('-avatar')[0])}-main.jpg`} alt={`Rendering of Character`} onError={this._characterRenderFallback.bind(this)} />
                 <div className="content">
                   <ProfileGear items={character.items} />
+                  <ProfileTalents talents={characterClass.talents.talents} />
                 </div>
               </div>
-              <ProfileTalents talents={characterClass.talents.talents} />
             </div>
           </div>
         </main>

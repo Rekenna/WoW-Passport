@@ -34,7 +34,6 @@ class ProfilePage extends Component{
 
   _updatePageTitle(params){
     const character = params.character;
-    console.log(params)
     document.title = `${character.charAt(0).toUpperCase() + character.slice(1)} - WoW Passport`;
   }
 
@@ -46,20 +45,19 @@ class ProfilePage extends Component{
     axios.get(`https://${region}.api.battle.net/wow/character/${realm}/${character}`, {
       params: {
         apikey: bnet,
-        fields: 'stats,talents,statistics,guild,items,progression,pvp,feed,acheivements'
+        fields: 'stats,talents,statistics,guild,items,progression,pvp,feed,titles,reputation,professions,achievements'
       }
     }).then(function(response) {
       let data = response.data
       console.log(data)
       if (Object.keys(data).length === 0 && data.constructor === Object) {
-        self.setState({player: null, progress: 'error', region: region})
+        self.setState({player: null, progress: 'error'})
       }
       else{
         self.setState({player: response.data, progress: 'done', region: region})
       }
     }).catch(function(error) {
-      console.log(error);
-      self.setState({player: null, progress: 'error', region: region})
+      self.setState({player: null, progress: 'error'})
     });
   }
 

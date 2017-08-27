@@ -12,7 +12,8 @@ class SearchForm extends Component{
     this.state = {
       region: 'us',
       locale: 'en_US',
-      realms: []
+      realms: [],
+      realm: 'bleeding-hollow'
     }
 
     this._getAvailableRealms = this._getAvailableRealms.bind(this)
@@ -74,7 +75,19 @@ class SearchForm extends Component{
     return
   }
 
+  _changeRealm(e){
+    e.preventDefault()
+    this.setState({realm: e.target.value})
+  }
+
   componentDidMount(){
+
+    const matchRealm = (this.props.location.pathname).split('/')[2]
+
+    this.setState({
+      realm: matchRealm
+    })
+
     this._getAvailableRealms(this.state.region)
   }
 
@@ -102,7 +115,12 @@ class SearchForm extends Component{
     let availableRealms;
     if(this.state.realms !== null){
       availableRealms = this.state.realms.map((realm, i) =>{
+        if(realm.slug === this.state.realm){
           return (<option key={realm.slug} value={realm.slug}>{realm.name}</option>);
+        }
+        else{
+          return (<option key={realm.slug} value={realm.slug}>{realm.name}</option>);
+        }
       });
     }
     else{
@@ -112,7 +130,7 @@ class SearchForm extends Component{
     return(
       <form className="search-form" onSubmit={this._handleSubmit.bind(this)}>
         <input type="text" required placeholder="Player Name" ref={c => this._character = c} className="search-text" />
-          <select ref={c => this._realm = c}>
+          <select ref={c => this._realm = c} value={this.state.realm} onChange={this._changeRealm.bind(this)}>
             {availableRealms}
           </select>
           <select ref={c => this._region = c} onChange={this._changeRegion.bind(this)}>
