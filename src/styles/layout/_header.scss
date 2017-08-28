@@ -1,0 +1,40 @@
+.site-header{
+  background-color: $space;
+  padding: 10px 0;
+  position: relative;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  .col-md-3{
+    flex: 1 0 auto;
+  }
+  .col-md-6{
+    flex: 2 0 auto;
+  }
+  img{
+    max-height: 30px;
+  }
+  ul.header-nav{
+    text-align: right;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    justify-content: flex-end;
+    font-size: 18px;
+    font-family: $lato;
+    font-weight: lighter;
+    list-style-type: none;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 2px #000;
+    li+li{
+      margin-left: 10px;
+    }
+    li a{
+      color: $white;
+    }
+  }
+}

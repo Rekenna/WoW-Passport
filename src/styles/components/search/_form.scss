@@ -1,0 +1,22 @@
+.search-form{
+  display: flex;
+  align-items: center;
+  height: 30px;
+  background-color: $white;
+  border-radius: 5px;
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+  overflow: hidden;
+  input,select,button{
+    height: 30px;
+    border: 0;
+    padding: 5px 10px;
+  }
+  input{
+    flex: 1 0 auto;
+  }
+
+  button{
+    background-color: $moss;
+    color: $white;
+  }
+}
