@@ -64,9 +64,7 @@ export default class ProfileProgression extends Component {
       <div className="profile-overview progression-container">
         <header>
           <strong>Legion Progression</strong>
-          <span>
-            <i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')}
-            Boss Kills</span>
+          <span><i className="fa fa-crosshairs"></i>{this.state.totalBossKills.format('0,0')} Boss Kills</span>
         </header>
         <ul className="progression-list">
           {currentProgression}

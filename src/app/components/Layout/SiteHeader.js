@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import AppLogo from '../../images/logo.png';
+import AppLogo from '../../../images/logo.png';
 import { withRouter } from 'react-router';
 import {Link} from 'react-router-dom';
 

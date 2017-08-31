@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { wcl } from '../../config/constants';
-import WarcraftLogsLogo from '../../images/warcraft-logs-logo.png';
+import WarcraftLogsLogo from '../../../images/warcraft-logs-logo.png';
 import { averagePerformance } from './helpers';
 
 
