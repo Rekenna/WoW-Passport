@@ -10,7 +10,7 @@
 /build
 src/*.css
 src/**/*.css
-src/config/constants.js
+src/app/config/constants.js
 
 # misc
 .DS_Store

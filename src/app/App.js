@@ -10,6 +10,7 @@ import ProfilePage from './views/ProfilePage';
 import SearchResults from './views/SearchResults';
 import SiteHeader from './components/Layout/SiteHeader';
 import SiteFooter from './components/Layout/SiteFooter';
+import FeedbackForm from './components/Feedback/FeedbackForm';
 
 export default class App extends React.Component {
   render() {
@@ -23,6 +24,7 @@ export default class App extends React.Component {
             <Route path="/:region/:realm/character/:character" component={ProfilePage}/>
             <Redirect to="/"/>
           </Switch>
+          <FeedbackForm/>
           <SiteFooter/>
         </div>
       </Router>

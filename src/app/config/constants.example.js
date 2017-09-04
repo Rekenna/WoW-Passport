@@ -18,6 +18,8 @@ export const index = client.initIndex('your_index_name');
 export const ga = "<GOOGLE ANALYTICS ID>";
 export const bnet = "<BNET API KEY>";
 export const wcl = "<WARCRAFT LOGS API KEY>";
+export const slack = "slackbotapikey";
+
 
 export const ref = firebase.database().ref()
 export const firebaseAuth = firebase.auth
