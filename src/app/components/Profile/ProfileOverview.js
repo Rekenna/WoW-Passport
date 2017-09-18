@@ -18,7 +18,6 @@ export default class ProfileOverview extends Component{
 
     let characterRender = document.getElementById('character-render');
     characterRender.src = fallbackUrl
-    console.log(character.thumbnail)
     return
   }
 
@@ -37,7 +36,7 @@ export default class ProfileOverview extends Component{
           <div className="content col-md-10">
             <div className="character-appearance">
               <div className="appearance-wrapper">
-                <img id="character-render" src={`//render-us.worldofwarcraft.com/character/${(character.thumbnail.split('-avatar')[0])}-main.jpg`} alt={`Rendering of Character`} onError={this._characterRenderFallback.bind(this)} />
+                <img id="character-render" src={`//render-${this.props.region}.worldofwarcraft.com/character/${(character.thumbnail.split('-avatar')[0])}-main.jpg`} alt={`Rendering of Character`} onError={this._characterRenderFallback.bind(this)} />
                 <div className="content">
                   <ProfileGear items={character.items} />
                   <ProfileTalents talents={characterClass.talents.talents} />

@@ -23,7 +23,7 @@ class ProfilePage extends Component{
 
   componentWillReceiveProps(nextProps){
     this.setState({progress: 'loading'})
-    this._updatePageTitle(this.props.match.params)
+    this._updatePageTitle(nextProps.match.params)
     this._searchForPlayer(nextProps.match.params)
   }
 
@@ -49,7 +49,6 @@ class ProfilePage extends Component{
       }
     }).then(function(response) {
       let data = response.data
-      console.log(data)
       if (Object.keys(data).length === 0 && data.constructor === Object) {
         self.setState({player: null, progress: 'error'})
       }

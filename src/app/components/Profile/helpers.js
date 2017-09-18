@@ -116,3 +116,37 @@ export function averagePerformance(performances, difficulty) {
 function getSum(total, num) {
   return total + num;
 }
+
+
+
+export function getArmoryLink(region, name, realm){
+  let locale = 'en_US';
+
+  switch (region) {
+    case 'us':
+      locale = 'en_US'
+      break;
+    case 'eu':
+      locale = 'en_GB'
+      break;
+    case 'kr':
+      locale = 'ko_KR'
+      break;
+    case 'tw':
+      locale = 'zh_TW'
+      break;
+    default:
+      locale = 'en_US'
+  }
+
+  return(`https://worldofwarcraft.com/${locale}/character/${realm}/${name}`).toLowerCase().replace(' ', '-');
+
+}
+
+export function getWclLink(character, region){
+  return(`https://www.warcraftlogs.com/character/${region}/${character.realm.replace(' ', '-')}/${character.name}`).toLowerCase();
+}
+
+export function getWowpLink(character, region){
+  return(`https://www.wowprogress.com/character/${region}/${character.realm.replace(' ', '-')}/${character.name}`).toLowerCase();
+}

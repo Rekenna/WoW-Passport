@@ -11,7 +11,7 @@ export default class ProfileProgression extends Component {
 
     this.state = {
       currentRaids: [
-        8524, 8025, 8440, 8026
+        8638, 8524, 8025, 8440, 8026
       ],
       totalBossKills: numeral(0)
     }

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 import { wcl } from '../../config/constants';
 import WarcraftLogsLogo from '../../../images/warcraft-logs-logo.png';
-import { averagePerformance } from './helpers';
+import { averagePerformance, getWclLink } from './helpers';
 
 
 export default class WarcraftLogs extends Component{
@@ -26,9 +26,8 @@ export default class WarcraftLogs extends Component{
   }
   _getWarcraftLogs(character, region) {
     const self = this;
-    let url = `https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm}/${region}`
-
-    axios.get( url.toLowerCase().replace(' ', '-'), {
+    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '-')}/${region}`)
+    axios.get( url.toLowerCase(), {
       params: {
         api_key: wcl
       }
@@ -50,7 +49,7 @@ export default class WarcraftLogs extends Component{
     let heroicAverage;
     let mythicAverage;
 
-    let wclurl = `https://www.warcraftlogs.com/character/${region}/${character.realm}/${character.name}`;
+    let wclurl = getWclLink(character, region)
 
     if(this.state.loaded){
       normalAverage = averagePerformance(this.state.logs, 3);
@@ -84,7 +83,7 @@ export default class WarcraftLogs extends Component{
         <div className="wcl-error">
           <img src={WarcraftLogsLogo} className="animated wcl-logo" alt="wcl logo"/>
           <p>It looks like we're unable to load logs for this character...</p>
-            <a href={wclurl} target="_blank" className="wcl-button">I'll Look for Myself</a>
+            <a href={wclurl.toLowerCase()} target="_blank" className="wcl-button">I'll Look for Myself</a>
         </div>
       );
     }

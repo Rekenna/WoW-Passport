@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { determineClass, determineRace } from './helpers';
+import { determineClass, determineRace, getArmoryLink, getWclLink, getWowpLink } from './helpers';
 
 import ProfileOverview from './ProfileOverview';
 import ProfileProgression from './ProfileProgression';
@@ -15,6 +15,9 @@ export default class ProfileContainer extends Component {
     const {character, region} = this.props;
     const characterClass = determineClass(character.class, character.talents);
     const armoryLink = getArmoryLink(region, character.name, character.realm);
+    const wclLink = getWclLink(character, region);
+    const wowpLink = getWowpLink(character, region);
+
     const race = determineRace(character.race)
 
     const lastLogout = moment(character.lastModified).format("MMM Do YYYY, h:mm A")
@@ -58,6 +61,8 @@ export default class ProfileContainer extends Component {
             </div>
             <div className="actions">
               <a href={armoryLink} className="armory-link" target="_blank">Armory <i className="fa fa-external-link"></i></a>
+              <a href={wclLink} className="armory-link" target="_blank">Warcraft Logs <i className="fa fa-external-link"></i></a>
+              <a href={wowpLink} className="armory-link" target="_blank">WoW Progress <i className="fa fa-external-link"></i></a>
             </div>
           </div>
           <p className="last-modified"><small>Last Online/Update:</small><br/> {lastLogout}</p>
@@ -108,28 +113,4 @@ export default class ProfileContainer extends Component {
       </div>
     );
   }
-}
-
-function getArmoryLink(region, name, realm){
-  let locale = 'en_US';
-
-  switch (region) {
-    case 'us':
-      locale = 'en_US'
-      break;
-    case 'eu':
-      locale = 'en_GB'
-      break;
-    case 'kr':
-      locale = 'ko_KR'
-      break;
-    case 'tw':
-      locale = 'zh_TW'
-      break;
-    default:
-      locale = 'en_US'
-  }
-
-  return(`https://worldofwarcraft.com/${locale}/character/${realm}/${name}`).toLowerCase().replace(' ', '-');
-
 }
