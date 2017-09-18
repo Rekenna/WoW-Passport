@@ -1,0 +1,41 @@
+.bookmarks-panel{
+  position: absolute;
+  bottom: 0;
+  right: calc(100% + 30px);
+  margin: 0;
+  border: 1px solid darken($moss, 5);
+  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+  width: 300px;
+  .panel-heading{
+    color: $white;
+    background-color: $moss;
+    text-align: center;
+  }
+  .center{
+    text-align: center;
+    margin: 0;
+  }
+  p{
+    margin: 0;
+  }
+  .panel-body{
+    padding: 0;
+  }
+  .bookmark-list{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    h5{
+      margin: 0;
+    }
+    li{
+      padding: 15px;
+      &:nth-child(even){
+        background-color: #f1f1f1;
+      }
+    }
+  }
+  .bookmark-info{
+
+  }
+}
