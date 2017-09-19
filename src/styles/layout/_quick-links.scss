@@ -33,9 +33,9 @@
     }
   }
   li.donate .menu-icon{
-    background-color: $cherry;
+    background-color: $white;
     &:hover{
-      background-color: darken($cherry, 5);
+      background-color: darken($white, 5);
     }
   }
   li.bookmarks .menu-icon{
@@ -43,6 +43,13 @@
     &:hover{
       background-color: darken($moss, 5);
     }
+  }
+  .patreon-logo{
+    position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 20px;
   }
   li.feedback-form-container .menu-icon{
     background-color: $blueberry;

@@ -1,4 +1,4 @@
-# WoW Passport - v1.0.0
+# WoW Passport - Alpha v1.1.1
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 

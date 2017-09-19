@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import BookmarkList from '../Bookmarks/BookmarkList';
 import FeedbackForm from '../Feedback/FeedbackForm';
 
+import PatreonLogo from '../../../images/patreon.svg'
+
 export default class QuickLinks extends Component{
   render(){
     return(
@@ -11,7 +13,9 @@ export default class QuickLinks extends Component{
           <BookmarkList/>
           <FeedbackForm/>
           <li className="donate quick-link">
-            <a className="menu-icon" rel="noopener noreferrer" href="https://www.paypal.me/ryanpmckenna" target="_blank"><i className="fa fa-paypal"></i></a>
+            <a className="menu-icon" rel="noopener noreferrer" href="https://www.patreon.com/rekenna" target="_blank">
+              <img className="patreon-logo" src={PatreonLogo} alt="Patreon Logo" />
+            </a>
           </li>
         </ul>
       </div>
