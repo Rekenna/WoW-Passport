@@ -9,7 +9,9 @@ import WarcraftLogs from './WarcraftLogs';
 var moment = require('moment');
 var numeral = require('numeral');
 
+
 export default class ProfileContainer extends Component {
+
   render(props){
 
     const {character, region} = this.props;

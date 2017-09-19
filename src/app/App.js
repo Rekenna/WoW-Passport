@@ -13,10 +13,9 @@ import SiteFooter from './components/Layout/SiteFooter';
 import QuickLinks from './components/Layout/QuickLinks';
 
 export default class App extends React.Component {
-
   render() {
     return (
-      <Router>
+      <Router history={this.props.history}>
         <div id="App">
           <SiteHeader/>
           <Switch>

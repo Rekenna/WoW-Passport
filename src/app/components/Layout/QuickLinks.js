@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Bookmarks from '../Bookmarks/Bookmarks';
+import BookmarkList from '../Bookmarks/BookmarkList';
 import FeedbackForm from '../Feedback/FeedbackForm';
 
 export default class QuickLinks extends Component{
@@ -8,8 +8,11 @@ export default class QuickLinks extends Component{
     return(
       <div className="quick-links">
         <ul className="quick-links-menu">
-          <Bookmarks/>
+          <BookmarkList/>
           <FeedbackForm/>
+          <li className="donate quick-link">
+            <a className="menu-icon" rel="noopener noreferrer" href="https://www.paypal.me/ryanpmckenna" target="_blank"><i className="fa fa-paypal"></i></a>
+          </li>
         </ul>
       </div>
     )

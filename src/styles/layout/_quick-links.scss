@@ -1,7 +1,7 @@
 .quick-links{
   position: fixed;
   bottom: 15px;
-  right: 30px;
+  right: 15px;
   .quick-links-menu{
     display: flex;
     flex-direction: column;
@@ -10,6 +10,7 @@
     list-style-type: none;
   }
   .menu-icon{
+    display: block;
     position: relative;
     height: 50px;
     width: 50px;
@@ -29,6 +30,12 @@
   li.quick-link{
     &+li.quick-link{
       margin-top: 15px;
+    }
+  }
+  li.donate .menu-icon{
+    background-color: $cherry;
+    &:hover{
+      background-color: darken($cherry, 5);
     }
   }
   li.bookmarks .menu-icon{
