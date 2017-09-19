@@ -2,7 +2,7 @@
 
 
 .home-banner{
-  min-height: 300px;
+  min-height: 400px;
   background-image: url('../images/splash.png');
   background-attachment: fixed;
   position: relative;
@@ -51,6 +51,10 @@
     font-size: 24px;
     font-family: $montserrat;
     font-weight: 600;
+    text-align: center;
+  }
+  .cherry{
+    color: $cherry;
   }
 }
 

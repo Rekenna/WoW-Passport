@@ -6,7 +6,9 @@ export default class SiteFooter extends Component{
       <div className="site-footer container">
         <div className="row">
           <div className="col-md-12">
-            <p>Made with <i className="fa fa-heart"></i> by <a href="http://rekenna.github.io/" rel="noopener noreferrer" target="_blank">Ryan P McKenna</a>.</p>
+            <p className="center">World of Warcraft is a registered trademark of Blizzard Entertainment, Inc.</p>
+            <p className="center">Love WoWPassport? <a className="mail" href="mailto:ryanpatmckenna@gmail.com">Tell me why</a></p>
+            <p className="center">Made with <i className="fa fa-heart"></i> by <a href="mailto:ryanpatmckenna@gmail.com" rel="noopener noreferrer" target="_blank">Ryan P McKenna</a>.</p>
           </div>
         </div>
       </div>

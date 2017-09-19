@@ -1,7 +1,9 @@
 .site-footer{
   margin: 40px auto 20px;
-  text-align: center;
   font-family: $lato;
+  .center{
+    text-align: center;
+  }
   .fa-heart{
     color: $cherry;
   }
