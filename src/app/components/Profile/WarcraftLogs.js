@@ -75,6 +75,7 @@ export default class WarcraftLogs extends Component{
             </li>
           </ul>
           <small>Median Performance Averages</small>
+          <p className="disclaimer">Notice: For recruiters seeking a tank or healer the Warcraft Logs API only allows me to pull dps performance averages on the analysis page. To get more detailed information view their logs directly through one of the links.</p>
           <a href={wclurl.toLowerCase().replace(' ', '-')} target="_blank" className="wcl-button">View Warcraft Logs</a>
         </div>
       );
