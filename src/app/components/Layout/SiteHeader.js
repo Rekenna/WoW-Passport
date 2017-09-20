@@ -15,7 +15,7 @@ class SiteHeader extends Component{
           <div className="row flex-row">
             <div className="col-12 col-md-3">
               <Link to="/"><img src={AppLogo} alt="WOW Passport Logo"/></Link>
-              <span className="app-version">Alpha v1.1.2</span>
+              <span className="app-version">Alpha v1.1.3</span>
             </div>
             <div className="col-12 col-md-6 col-md-offset-3">
               <SearchForm/>

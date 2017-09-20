@@ -5,6 +5,7 @@ import { determineClass, determineRace, getArmoryLink, getWclLink, getWowpLink }
 import ProfileOverview from './ProfileOverview';
 import ProfileProgression from './ProfileProgression';
 import WarcraftLogs from './WarcraftLogs';
+import RaiderIO from './RaiderIO';
 
 var moment = require('moment');
 var numeral = require('numeral');
@@ -107,6 +108,7 @@ export default class ProfileContainer extends Component {
             </div>
             <div className="col-md-4">
               <section className="profile-column">
+                <RaiderIO {...this.props}/>
                 <WarcraftLogs {...this.props}/>
               </section>
             </div>

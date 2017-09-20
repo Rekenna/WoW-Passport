@@ -24,7 +24,7 @@ export default class HomePage extends Component{
             </div>
             <div className="col-md-6">
               <article>
-                <h3>Welcome to WoW Passport <strong className="cherry">Alpha v1.1.2</strong></h3>
+                <h3>Welcome to WoW Passport <strong className="cherry">Alpha v1.1.3</strong></h3>
                 <p>I'm still working on this application every day, so expect bugs! You are welcome to follow my updates on the <a href="https://github.com/Rekenna/WoW-Passport" rel="noopener noreferrer" target="_blank">github repository</a> and if you have any suggestions feel free to leave a comment on the repository or send me a message. <strong>If you see any bugs or have a suggestion you can send me a message from the side menu.</strong></p>
                 <p>I work on this project in my free time, so I've included a patreon button in the side menu if you'd like to buy me a beer for my efforts. I have a lot planned for this project and will be keeping it up to date as patches are released.</p>
                 <p className="center"><strong>Thanks for trying WoW Passport!</strong></p>
