@@ -2,6 +2,7 @@
   position: fixed;
   bottom: 15px;
   right: 15px;
+  z-index: 100;
   .quick-links-menu{
     display: flex;
     flex-direction: column;

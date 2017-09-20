@@ -29,6 +29,10 @@
   width: 100%;border-radius: 5px;
   border: 1px solid $cement;
   padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
   .stat-icon{
     width: 100%;
     i{
@@ -38,8 +42,11 @@
   }
   .stat{
     display: block;
-    width: 100%;
+    flex: 1 0 auto;
     text-align: center;
+  }
+  @media (min-width: 992px) {
+    display: block;
   }
   strong{
     margin: 0 auto 15px auto;
