@@ -10,6 +10,8 @@
   min-height: 400px;
   background-image: url('../images/splash.png');
   background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
   position: relative;
 
   .profile-header-content{
