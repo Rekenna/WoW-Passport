@@ -26,7 +26,7 @@ export default class WarcraftLogs extends Component{
   }
   _getWarcraftLogs(character, region) {
     const self = this;
-    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '').replace('-', '').replace("'", "").toLowerCase()}/${region.toUpperCase()}`)
+    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '-').replace("'", "").toLowerCase()}/${region.toUpperCase()}`)
     axios.get( url.toLowerCase(), {
       params: {
         api_key: wcl
