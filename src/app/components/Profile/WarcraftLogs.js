@@ -26,7 +26,7 @@ export default class WarcraftLogs extends Component{
   }
   _getWarcraftLogs(character, region) {
     const self = this;
-    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '-').replace("'", "")}/${region}`)
+    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '').replace('-', '').replace("'", "").toLowerCase()}/${region.toUpperCase()}`)
     axios.get( url.toLowerCase(), {
       params: {
         api_key: wcl
@@ -83,8 +83,8 @@ export default class WarcraftLogs extends Component{
       logResults = (
         <div className="wcl-error">
           <img src={WarcraftLogsLogo} className="animated wcl-logo" alt="wcl logo"/>
-          <p>It looks like we're unable to load logs for this character...</p>
-            <a href={wclurl.toLowerCase()} target="_blank" className="wcl-button">I'll Look for Myself</a>
+          <p>It looks like we had an issue trying to load logs for this character...</p>
+          <a href={wclurl} target="_blank" className="wcl-button">I'll Look for Myself</a>
         </div>
       );
     }

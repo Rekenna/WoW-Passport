@@ -144,7 +144,7 @@ export function getArmoryLink(region, name, realm){
 }
 
 export function getWclLink(character, region){
-  return(`https://www.warcraftlogs.com/character/${region}/${character.realm.replace(' ', '-')}/${character.name}`).toLowerCase();
+  return(`https://www.warcraftlogs.com/character/${region}/${character.realm.replace(' ', '').replace('-', '')}/${character.name}`).toLowerCase();
 }
 
 export function getWowpLink(character, region){

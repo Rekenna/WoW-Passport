@@ -23,7 +23,6 @@ export default class RaiderIO extends Component{
   _getRaiderIO(character, region, realm) {
     const self = this;
     let url = (`https://raider.io/api/v1/characters/profile?region=${region}&realm=${realm.replace(' ', '-')}&name=${character.name}&fields=mythic_plus_scores,mythic_plus_weekly_highest_level_runs`)
-    console.log(url)
     axios.get( url.toLowerCase(), {
       params: {}
     }).then(function(response) {
