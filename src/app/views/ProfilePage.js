@@ -28,8 +28,6 @@ class ProfilePage extends Component{
   }
 
   componentDidMount(){
-    window.analytics.page();
-    
     this._searchForPlayer(this.props.match.params)
     this._updatePageTitle(this.props.match.params)
   }

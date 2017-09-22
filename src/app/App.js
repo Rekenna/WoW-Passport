@@ -12,12 +12,7 @@ import SiteHeader from './components/Layout/SiteHeader';
 import SiteFooter from './components/Layout/SiteFooter';
 import QuickLinks from './components/Layout/QuickLinks';
 
-import {segmentIO} from './config/constants';
-
 export default class App extends React.Component {
-  componentDidMount(){
-    window.analytics.load(segmentIO);
-  }
 
   render() {
     return (

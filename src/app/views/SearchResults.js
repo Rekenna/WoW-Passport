@@ -17,7 +17,6 @@ export default class SearchResults extends Component{
   }
 
   componentDidMount(){
-    window.analytics.page();
 
     const hashParts = (window.location.hash.split('#'))[1].split('+');
 

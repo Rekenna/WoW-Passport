@@ -6,10 +6,6 @@ export default class NotFound extends Component{
     document.title = "404 - WoW Passport";
   }
 
-  componentDidMount(){
-    window.analytics.page();
-  }
-
   render(props){
     return(
       <div className="profile-container loading">
