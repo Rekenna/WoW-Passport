@@ -6,6 +6,7 @@ export default class ProfileGear extends Component {
   render(){
 
     const items = this.props.items;
+    const artifactWeapon = this.props.items.mainHand;
     const itemsKeys = Object.keys(items)
 
     let equippedGear = [];
@@ -21,7 +22,7 @@ export default class ProfileGear extends Component {
 
     return(
       <div className="profile-gear">
-        <GearList gear={equippedGear}/>
+        <GearList gear={equippedGear} artifact={artifactWeapon}/>
       </div>
     );
   }
@@ -37,13 +38,31 @@ class GearList extends Component{
     let rightList = this._filterGearSlots(gear, ['hands', 'waist', 'legs', 'feet', 'finger1', 'finger2', 'trinket1', 'trinket2'], 'right', this._compileGearPiece.bind(this), this._getItemQuality.bind(this))
     let centerList = this._filterGearSlots(gear, ['mainHand', 'offHand'], 'center', this._compileGearPiece.bind(this), this._getItemQuality.bind(this))
 
+    let artifactLevel = this._sumArtifactRanks(this.props.artifact)
+
+
     return(
       <div className="gear-grid">
         {leftList}
         {centerList}
         {rightList}
+        <div className="artifact-power">
+          <p>Artifact Level {artifactLevel}</p>
+        </div>
       </div>
     );
+  }
+
+  _sumArtifactRanks(artifactWeapon){
+    let ranksArray = artifactWeapon.artifactTraits.map((trait, index) =>{
+      return trait.rank
+    })
+
+    let ranksTotal = ranksArray.reduce(function(sum, value) {
+      return sum + value;
+    }, 0)
+    // Subtract 3 for ranks given by slotted relics.
+    return ranksTotal - 3;
   }
 
   _filterGearSlots(gearPieces, locations, position, compileGearPiece, getItemQuality){

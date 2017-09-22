@@ -47,9 +47,21 @@ $heirloom: #00ccff;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    top: -20px;
 
     .gear-piece {
       margin: 0 5px;
+    }
+  }
+  .artifact-power{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    p{
+      margin: 5px auto;
+      color: $artifact;
     }
   }
 }
