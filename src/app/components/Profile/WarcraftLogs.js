@@ -26,8 +26,18 @@ export default class WarcraftLogs extends Component{
   }
   _getWarcraftLogs(character, region) {
     const self = this;
-    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm.replace(' ', '-').replace("'", "").toLowerCase()}/${region.toUpperCase()}`)
-    axios.get( url.toLowerCase(), {
+    let realmName = (character.realm).toLowerCase().split('')
+    let realmSlug = '';
+    for (var i in realmName) {
+      if(realmName[i] === ' '){
+        realmSlug += '-'
+      }
+      else{
+        realmSlug += realmName[i]
+      }
+    }
+    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${realmSlug}/${region}`).toLowerCase()
+    axios.get( url, {
       params: {
         api_key: wcl
       }
@@ -50,6 +60,16 @@ export default class WarcraftLogs extends Component{
     let mythicAverage;
 
     let wclurl = getWclLink(character, region)
+    let wclurlmod = '';
+    for (var i in wclurl) {
+      if(wclurl[i] === ' '){
+        wclurlmod += '-'
+      }
+      else{
+        wclurlmod += wclurl[i]
+      }
+    }
+
 
     if(this.state.loaded){
       normalAverage = averagePerformance(this.state.logs, 3);
@@ -76,7 +96,7 @@ export default class WarcraftLogs extends Component{
           </ul>
           <small>Median Performance Averages</small>
           <p className="disclaimer">Notice: For recruiters seeking a tank or healer the Warcraft Logs API only allows me to pull dps performance averages on the analysis page. To get more detailed information view their logs directly through one of the links.</p>
-          <a href={wclurl.toLowerCase().replace(' ', '-')} target="_blank" className="wcl-button">View Warcraft Logs</a>
+          <a href={wclurlmod.toLowerCase().replace(' ', '-')} target="_blank" className="wcl-button">View Warcraft Logs</a>
         </div>
       );
     }else if (this.state.error) {
@@ -84,7 +104,7 @@ export default class WarcraftLogs extends Component{
         <div className="wcl-error">
           <img src={WarcraftLogsLogo} className="animated wcl-logo" alt="wcl logo"/>
           <p>It looks like we had an issue trying to load logs for this character...</p>
-          <a href={wclurl} target="_blank" className="wcl-button">I'll Look for Myself</a>
+          <a href={wclurlmod} target="_blank" className="wcl-button">I'll Look for Myself</a>
         </div>
       );
     }
