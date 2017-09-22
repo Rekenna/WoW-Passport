@@ -12,20 +12,16 @@ import SiteHeader from './components/Layout/SiteHeader';
 import SiteFooter from './components/Layout/SiteFooter';
 import QuickLinks from './components/Layout/QuickLinks';
 
-import {ga} from './config/constants';
-
-var ReactGA = require('react-ga');
-ReactGA.initialize(ga);
-
-function logPageView() {
-  ReactGA.set({ page: window.location.pathname + window.location.search });
-  ReactGA.pageview(window.location.pathname + window.location.search);
-}
+import {segmentIO} from './config/constants';
 
 export default class App extends React.Component {
+  componentDidMount(){
+    window.analytics.load(segmentIO);
+  }
+
   render() {
     return (
-      <Router onUpdate={logPageView} history={this.props.history}>
+      <Router history={this.props.history}>
         <div id="App">
           <SiteHeader/>
           <Switch>

@@ -8,6 +8,10 @@ export default class HomePage extends Component{
     document.title = "WoW Passport - Player Lookup and Analysis";
   }
 
+  componentDidMount(){
+    window.analytics.page();
+  }
+
   render(){
     return(
       <div className="home-page">
