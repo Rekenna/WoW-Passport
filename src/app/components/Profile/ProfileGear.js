@@ -6,8 +6,16 @@ export default class ProfileGear extends Component {
   render(){
 
     const items = this.props.items;
-    const artifactWeapon = this.props.items.mainHand;
     const itemsKeys = Object.keys(items)
+
+    let artifactWeapon;
+
+    if(items.mainHand.artifactTraits.length > items.offHand.artifactTraits.length){
+      artifactWeapon = items.mainHand;
+    }
+    else{
+      artifactWeapon = items.offHand;
+    }
 
     let equippedGear = [];
     equippedGear = itemsKeys.map((key, i) => {
