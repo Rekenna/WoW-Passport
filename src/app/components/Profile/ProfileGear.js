@@ -11,7 +11,12 @@ export default class ProfileGear extends Component {
     let artifactWeapon;
 
     if(items.offHand){
-      artifactWeapon = items.offHand;
+      if (items.offHand.artifactTraits.length > items.mainHand.artifactTraits.length) {
+        artifactWeapon = items.offHand;
+      }
+      else{
+        artifactWeapon = items.mainHand;
+      }
     }
     else{
       artifactWeapon = items.mainHand;
