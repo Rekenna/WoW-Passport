@@ -34,9 +34,9 @@
     }
   }
   li.donate .menu-icon{
-    background-color: $white;
+    background-color: #FF5900;
     &:hover{
-      background-color: darken($white, 5);
+      background-color: darken(#FF5900, 5);
     }
   }
   li.bookmarks .menu-icon{
