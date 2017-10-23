@@ -1,13 +1,54 @@
-.site-header{
+.site-status{
+  background-color: darken($space, 5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  padding: 3px 15px;
+  ul,p{
+    margin: 0;
+    padding: 0;
+  }
+  ul,li{
+    list-style-type: none;
+  }
+  ul{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  li{
+    margin-left: 15px;
+  }
+  p.bnet{
+    position: relative;
+    padding-left: 20px;
+    &:before{
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      height: 10px;
+      width: 10px;
+      border-radius: 50%;
+    }
+    &.true:before{
+      background-color: $seaGreen;
+    }
+    &.false:before{
+      background-color: $cherry;
+    }
+  }
+}
+
+.site-nav{
   background-color: $space;
   padding: 10px 0;
   position: relative;
-  background-color: transparent;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 100;
   width: 100%;
+  z-index: 300;
+  @include depth;
   .app-version{
     margin: 0 auto 0 15px;
     color: $white;
@@ -15,7 +56,9 @@
     background-color: $cherry;
     padding: 3px 6px;
     border-radius: 2px;
-    font-size: 10px;
+    font-size: 9px;
+    position: relative;
+    top: -5px;
   }
   .col-md-3{
     flex: 1 0 auto;
@@ -34,7 +77,7 @@
     padding: 0;
     justify-content: flex-end;
     font-size: 18px;
-    font-family: $lato;
+    font-family: $openSans;
     font-weight: lighter;
     list-style-type: none;
     text-rendering: optimizeLegibility;

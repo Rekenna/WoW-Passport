@@ -10,9 +10,12 @@
   transition: box-shadow .25s, -webkit-box-shadow .25s;
   border-radius: .25em;
   padding: 15px;
-  margin-bottom: 30px;
+  margin: 15px 0;
   font-weight: lighter;
   box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+  @include medwidth(){
+    margin: 0 0 30px;
+  };
   img.wcl-logo{
     max-width: 80px;
   }
@@ -37,7 +40,7 @@
   max-width: 180px;
   padding: 8px 15px;
   color: white;
-  &:hover{
+  &:hover, &:focus{
     background-color: $white;
     text-decoration: none;
     color: $slate;
@@ -64,12 +67,12 @@
     }
     i{
       font-size: 2.5em;
-      font-family: $lato;
+      font-family: $openSans;
       font-style: normal;
     }
     p{
       margin: 0 10px;
-      font-family: $lato;
+      font-family: $openSans;
     }
   }
 }

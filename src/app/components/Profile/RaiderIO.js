@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-
 export default class RaiderIO extends Component{
   constructor(props){
     super(props);
@@ -16,13 +15,13 @@ export default class RaiderIO extends Component{
   }
 
   componentDidMount(){
-    const {character, region} = this.props;
+    const {character} = this.props;
 
-    this._getRaiderIO(character, region, character.realm)
+    this._getRaiderIO(character)
   }
-  _getRaiderIO(character, region, realm) {
+  _getRaiderIO(character) {
     const self = this;
-    let url = (`https://raider.io/api/v1/characters/profile?region=${region}&realm=${realm.replace(' ', '-')}&name=${character.name}&fields=mythic_plus_scores,mythic_plus_weekly_highest_level_runs`)
+    let url = (`https://raider.io/api/v1/characters/profile?region=${character.region}&realm=${character.realm_slug}&name=${character.name}&fields=mythic_plus_scores,mythic_plus_weekly_highest_level_runs`)
     axios.get( url.toLowerCase(), {
       params: {}
     }).then(function(response) {
@@ -35,9 +34,7 @@ export default class RaiderIO extends Component{
 
   render(props){
 
-    const {character, region} = this.props;
-
-    let rioUrl = (`https://raider.io/characters/${region}/${character.realm}/${character.name}`).replace(' ', '-').toLowerCase()
+    const {character} = this.props;
 
     let ioResults;
     let weeklyBest;
@@ -91,7 +88,7 @@ export default class RaiderIO extends Component{
         <h5>Raider.io</h5>
         {ioResults}
         {weeklyBest}
-        <a href={rioUrl.toLowerCase()} target="_blank" className="raiderio-button">View Raider.io</a>
+        <a href={character.urls.raiderio} target="_blank" className="raiderio-button">View Raider.io</a>
       </div>
     );
   }

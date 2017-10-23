@@ -1,4 +1,5 @@
-.profile-overview{
+.profile-section{
+  margin-top: 40px;
   header{
     font-size: 1.75em;
     font-weight: bold;
@@ -16,7 +17,7 @@
       border: 1px solid $cement;
       font-size: .45em;
       border-radius: 25px;
-      font-family: $lato;
+      font-family: $openSans;
     }
     i{
       margin-right: 5px;
@@ -52,7 +53,7 @@
     margin: 0 auto 15px auto;
     display: block;
     font-size: 10px;
-    font-family: $lato;
+    font-family: $openSans;
     font-weight: 300;
   }
   p{
@@ -84,5 +85,143 @@
   }
   .versatility{
     color: #BFBFBF;
+  }
+}
+
+.character-feed{
+  margin: 30px auto 0;
+  padding: 0;
+  max-height: 500px;
+  overflow-y: auto;
+  .title{
+    font-family: $montserrat;
+    font-weight: bold;
+    border-bottom: 1px solid $slate;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  .feed-list{
+    margin: 0;
+    list-style-type: none;
+    padding: 0;
+  }
+  li{
+    display: flex;
+    align-items: flex-start;
+    padding: 10px;
+    &:nth-child(odd){
+      background-color: #f1f1f1;
+    }
+  }
+  .feed-icon{
+    width: 40px;
+    height: 40px;
+    position: relative;
+    margin-right: 10px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    .fa{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 22px;
+    }
+  }
+  .feed-content{
+    position: relative;
+    display: inline-block;
+  }
+  h5{
+    margin: 0 auto;
+    font-family: $montserrat;
+    font-weight: bold;
+  }
+  .timestamp{
+    font-style: italic;
+    font-size: .9em;
+  }
+}
+
+.shortlink-container{
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: $cherry;
+  text-align: center;
+  @include depth;
+  @include medwidth(){
+    margin-top: 0;
+  };
+  h5{
+    color: $white;
+    font-weight: bold;
+    font-family: $montserrat;
+    margin: 0 auto 15px auto;
+    font-size: 1.25em;
+  }
+  .input-group-addon{
+    background-color: darken(#eee, 10);
+    cursor: pointer;
+    &:hover{
+      background-color: darken(#eee, 20);
+    }
+  }
+}
+
+.notables-container{
+  margin-top: 30px;
+  .notable-achievements{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .title{
+    font-family: $montserrat;
+    font-weight: bold;
+    border-bottom: 1px solid $slate;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  li{
+    display: flex;
+    align-items: flex-start;
+    border: 2px solid $slate;
+    border-radius: 2px;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: $slate;
+    &.incomplete{
+      background-color: lighten(rgba($slate, .5), 30);
+      border: 2px dashed $slate;
+      color: $slate;
+      opacity: .65;
+    }
+    &.complete{
+      color: $white;
+      @include depth;
+    }
+  }
+  h5{
+    margin: 0 auto 5px;
+    font-family: $montserrat;
+    font-weight: bold;
+  }
+  p{
+    font-size: .85em;
+    font-style: italic;
+    margin: 0;
+  }
+  .achievement-content{
+    padding: 5px 15px;
+  }
+  .icon-wrapper{
+    width: 45px;
+    height: 45px;
+    img{
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
   }
 }

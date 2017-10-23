@@ -124,6 +124,7 @@ class GearList extends Component{
       <OverlayTrigger key={item.id} placement={tooltipPosition} overlay={tooltip}>
         <li key={item.id} className={`gear-piece ${this._getItemQuality(item.quality)} tooltip-${tooltipPosition}`}>
           <img src={`https://render-us.worldofwarcraft.com/icons/56/${item.icon}.jpg`} alt={item.name}/>
+          <span className="itemLevel">{item.itemLevel}</span>
         </li>
       </OverlayTrigger>
     );

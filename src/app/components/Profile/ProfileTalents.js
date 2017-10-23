@@ -31,7 +31,7 @@ function getTalentIcon(talent) {
 
   return (
     <OverlayTrigger key={talent.spell.id} placement="bottom" overlay={tooltip}>
-      <li className="talent"><img src={`https://render-us.worldofwarcraft.com/icons/56/${talent.spell.icon}.jpg`} alt={`talent ${talent.spell.name} thumbnail`}/></li>
+      <li className="talent tooltip-bottom"><img src={`https://render-us.worldofwarcraft.com/icons/56/${talent.spell.icon}.jpg`} alt={`talent ${talent.spell.name} thumbnail`}/></li>
     </OverlayTrigger>
   );
 }

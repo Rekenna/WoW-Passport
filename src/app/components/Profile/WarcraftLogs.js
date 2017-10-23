@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import { wcl } from '../../config/constants';
-import WarcraftLogsLogo from '../../../images/warcraft-logs-logo.png';
-import { averagePerformance, getWclLink } from './helpers';
-
 
 export default class WarcraftLogs extends Component{
   constructor(props){
@@ -24,20 +21,12 @@ export default class WarcraftLogs extends Component{
 
     this._getWarcraftLogs(character, region)
   }
-  _getWarcraftLogs(character, region) {
+
+  _getWarcraftLogs(character) {
     const self = this;
-    let realmName = (character.realm).toLowerCase().split('')
-    let realmSlug = '';
-    for (var i in realmName) {
-      if(realmName[i] === ' '){
-        realmSlug += '-'
-      }
-      else{
-        realmSlug += realmName[i]
-      }
-    }
-    let url = (`https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${realmSlug}/${region}`).toLowerCase()
-    axios.get( url, {
+
+    let url = `https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm_slug}/${character.region}`
+    axios.get( url.toLowerCase(), {
       params: {
         api_key: wcl
       }
@@ -51,25 +40,13 @@ export default class WarcraftLogs extends Component{
 
   render(props){
 
-    const {character, region} = this.props;
+    const {character} = this.props;
 
     let logResults;
 
     let normalAverage;
     let heroicAverage;
     let mythicAverage;
-
-    let wclurl = getWclLink(character, region)
-    let wclurlmod = '';
-    for (var i in wclurl) {
-      if(wclurl[i] === ' '){
-        wclurlmod += '-'
-      }
-      else{
-        wclurlmod += wclurl[i]
-      }
-    }
-
 
     if(this.state.loaded){
       normalAverage = averagePerformance(this.state.logs, 3);
@@ -78,8 +55,7 @@ export default class WarcraftLogs extends Component{
 
       logResults = (
         <div className="wcl-success">
-          <img src={WarcraftLogsLogo} className="wcl-logo" alt="wcl logo"/>
-          <h5>Warcraft Logs</h5>
+          <h5>Median Performance Averages</h5>
           <ul className="averages">
             <li className="average normal">
               <i>{normalAverage}</i>
@@ -94,24 +70,20 @@ export default class WarcraftLogs extends Component{
                 <p>Mythic</p>
             </li>
           </ul>
-          <small>Median Performance Averages</small>
-          <p className="disclaimer">Notice: For recruiters seeking a tank or healer the Warcraft Logs API only allows me to pull dps performance averages on the analysis page. To get more detailed information view their logs directly through one of the links.</p>
-          <a href={wclurlmod.toLowerCase().replace(' ', '-')} target="_blank" className="wcl-button">View Warcraft Logs</a>
+          <a href={character.urls.warcraftlogs} target="_blank" className="wcl-button">View Warcraft Logs</a>
         </div>
       );
     }else if (this.state.error) {
       logResults = (
         <div className="wcl-error">
-          <img src={WarcraftLogsLogo} className="animated wcl-logo" alt="wcl logo"/>
           <p>It looks like we had an issue trying to load logs for this character...</p>
-          <a href={wclurlmod} target="_blank" className="wcl-button">I'll Look for Myself</a>
+          <a href={character.urls.warcraftlogs} target="_blank" className="wcl-button">I'll Look for Myself</a>
         </div>
       );
     }
     else{
       logResults = (
         <div className="wcl-loading">
-          <img className="wcl-logo" src={WarcraftLogsLogo} alt="wcl logo"/>
           <p>Attempting to load data from Warcraft Logs...</p>
         </div>
       );
@@ -119,8 +91,27 @@ export default class WarcraftLogs extends Component{
 
     return(
       <div className="warcraftlogs-container animated fadeIn">
+        <h5>Warcraft Logs</h5>
         {logResults}
       </div>
     );
   }
+}
+
+function averagePerformance(performances, difficulty) {
+  const encounters = performances.map((performance, i) => {
+    return ({"encounter": performance.encounter, "difficulty": performance.difficulty, "rank": performance.rank, "outOf": performance.outOf, "reportID": performance.reportID})
+  });
+
+  const encountersToAverage = encounters.filter(encounter => encounter.difficulty === difficulty)
+
+  const average = 100 - (encountersToAverage.map((encounter, i) => {
+    return ((encounter.rank / encounter.outOf) * 100)
+  }).reduce(getSum) / encountersToAverage.length);
+
+  return Math.floor(average);
+}
+
+function getSum(total, num) {
+  return total + num;
 }

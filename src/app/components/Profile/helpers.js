@@ -1,4 +1,52 @@
-export function determineRace(race) {
+import {realms} from '../../config/data_resources';
+
+export function formatCharacterData(characterData, region){
+  let formattedData = characterData;
+
+  formattedData['class'] = determineClass(characterData.class, characterData.talents)
+  formattedData['gender'] = determineGender(characterData.gender)
+  formattedData['race'] = determineRace(characterData.race)
+  formattedData['faction'] = determineFaction(characterData.faction)
+  formattedData['realm_slug'] = getRealmSlug(characterData.realm)
+  formattedData['region'] = region.toLowerCase()
+  formattedData['urls'] = getLinks(formattedData)
+  formattedData['renders'] = getRenders(formattedData)
+
+  formattedData['key'] = characterKey(formattedData)
+
+  return formattedData;
+}
+
+function characterKey(formattedData){
+
+  let characterKey = (`${formattedData.region}|${formattedData.realm_slug}|${formattedData.name}`).toLowerCase()
+
+  return characterKey
+}
+
+function determineGender(gender){
+  if (gender) {
+    return "Female"
+  }
+  else{
+    return "Male";
+  }
+}
+
+export function getRealmSlug(characterRealm){
+  let realmSlug;
+  realms.map((realm, index) =>{
+    if(realm.name === characterRealm){
+      return realmSlug = realm.slug
+    }
+    else{
+      return realmSlug = characterRealm.replace(' ', '-').replace('\'', '').toLowerCase()
+    }
+  })
+  return realmSlug
+}
+
+function determineRace(race) {
   switch (race) {
     case 1:
       return 'Human'
@@ -29,7 +77,7 @@ export function determineRace(race) {
     case 26:
       return 'Pandaren'
     default:
-      return 'Nuetral'
+      return 'None'
   }
 }
 
@@ -44,37 +92,78 @@ export function determineFaction(faction) {
   }
 }
 
-export function determineClass(characterClass, talents) {
+function determineClass(characterClass, talents) {
   const specialization = talents.filter(talent => talent.selected === true)[0];
 
   switch (characterClass) {
     case 1:
-      return ({spec: 'Warrior', talents: specialization});
+      return ({name: 'Warrior', talents: specialization});
     case 2:
-      return ({spec: 'Paladin', talents: specialization});
+      return ({name: 'Paladin', talents: specialization});
     case 3:
-      return ({spec: 'Hunter', talents: specialization});
+      return ({name: 'Hunter', talents: specialization});
     case 4:
-      return ({spec: 'Rogue', talents: specialization});
+      return ({name: 'Rogue', talents: specialization});
     case 5:
-      return ({spec: 'Priest', talents: specialization});
+      return ({name: 'Priest', talents: specialization});
     case 6:
-      return ({spec: 'Death Knight', talents: specialization});
+      return ({name: 'Death Knight', talents: specialization});
     case 7:
-      return ({spec: 'Shaman', talents: specialization});
+      return ({name: 'Shaman', talents: specialization});
     case 8:
-      return ({spec: 'Mage', talents: specialization});
+      return ({name: 'Mage', talents: specialization});
     case 9:
-      return ({spec: 'Warlock', talents: specialization});
+      return ({name: 'Warlock', talents: specialization});
     case 10:
-      return ({spec: 'Monk', talents: specialization});
+      return ({name: 'Monk', talents: specialization});
     case 11:
-      return ({spec: 'Druid', talents: specialization});
+      return ({name: 'Druid', talents: specialization});
     case 12:
-      return ({spec: 'Demon Hunter', talents: specialization});
+      return ({name: 'Demon Hunter', talents: specialization});
     default:
-      return ({spec: 'None', talents: null});
+      return ({name: 'None', talents: null});
   }
+}
+
+function getLinks(formattedData){
+
+  let locale;
+  switch (formattedData.region) {
+    case 'us':
+      locale = 'en_US'
+      break;
+    case 'eu':
+      locale = 'en_GB'
+      break;
+    case 'kr':
+      locale = 'ko_KR'
+      break;
+    case 'tw':
+      locale = 'zh_TW'
+      break;
+    default:
+      locale = 'en_US'
+  }
+
+  let urls = {
+    'armory' : (`https://worldofwarcraft.com/${locale}/character/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
+    'wowprogress': (`https://www.wowprogress.com/character/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
+    'raiderio': (`https://raider.io/characters/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
+    'warcraftlogs': (`https://www.warcraftlogs.com/character/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase()
+
+  }
+  return urls
+}
+
+function getRenders(formattedData){
+
+  let renders = {
+    'main': `//render-${formattedData.region}.worldofwarcraft.com/character/${(formattedData.thumbnail.split('-avatar')[0])}-main.jpg`,
+    'avatar': `https://render-${formattedData.region}.worldofwarcraft.com/character/${formattedData.thumbnail}`,
+    'class': `https://render-us.worldofwarcraft.com/icons/56/${formattedData.class.talents.spec.icon}.jpg`,
+    'fallback': (`https://blzmedia-a.akamaihd.net/wow/renders/shadow/wow/renders/shadow/${formattedData.class.name}-${formattedData.race}-${formattedData.gender}.jpg`).toLowerCase().replace(/\s/g,'')
+  }
+  return renders;
 }
 
 export function determineProgression(raid) {
@@ -97,56 +186,4 @@ export function determineProgression(raid) {
   }
 
   return progression;
-}
-
-export function averagePerformance(performances, difficulty) {
-  const encounters = performances.map((performance, i) => {
-    return ({"encounter": performance.encounter, "difficulty": performance.difficulty, "rank": performance.rank, "outOf": performance.outOf, "reportID": performance.reportID})
-  });
-
-  const encountersToAverage = encounters.filter(encounter => encounter.difficulty === difficulty)
-
-  const average = 100 - (encountersToAverage.map((encounter, i) => {
-    return ((encounter.rank / encounter.outOf) * 100)
-  }).reduce(getSum) / encountersToAverage.length);
-
-  return Math.floor(average);
-}
-
-function getSum(total, num) {
-  return total + num;
-}
-
-
-
-export function getArmoryLink(region, name, realm){
-  let locale = 'en_US';
-
-  switch (region) {
-    case 'us':
-      locale = 'en_US'
-      break;
-    case 'eu':
-      locale = 'en_GB'
-      break;
-    case 'kr':
-      locale = 'ko_KR'
-      break;
-    case 'tw':
-      locale = 'zh_TW'
-      break;
-    default:
-      locale = 'en_US'
-  }
-
-  return(`https://worldofwarcraft.com/${locale}/character/${realm}/${name}`).toLowerCase().replace(' ', '-');
-
-}
-
-export function getWclLink(character, region){
-  return(`https://www.warcraftlogs.com/character/${region}/${character.realm.replace(' ', '-').replace("'", "")}/${character.name}`).toLowerCase();
-}
-
-export function getWowpLink(character, region){
-  return(`https://www.wowprogress.com/character/${region}/${character.realm.replace(' ', '-')}/${character.name}`).toLowerCase();
 }
