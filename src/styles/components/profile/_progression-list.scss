@@ -1,7 +1,7 @@
 $complete: #98E28E;
 $incomplete: #B4654A;
 
-.progression-container{
+.profile-progression{
   .raid-wrapper+.raid-wrapper{
     padding-top: 10px;
     margin-top: 10px;
@@ -33,7 +33,7 @@ $incomplete: #B4654A;
     float: right;
   }
   .bar-label{
-    font-family: $lato;
+    font-family: $openSans;
     font-weight: 200;
     width: 100px;
     margin-right: 10px;
@@ -70,12 +70,8 @@ ul.legacy-progression-list{
   border: 1px solid $cement;
   background-color: lighten($cement, 15);
   border-radius: 5px;
-  display: flex;
-  align-items: stretch;
   padding: 0;
-  flex-wrap: wrap;
   li.legacy-raid{
-    width: 25%;
     min-width: 120px;
   }
   .status{
@@ -100,7 +96,6 @@ ul.legacy-progression-list{
     }
   }
   h5{
-    font-style: $lato;
     font-weight: 300;
     color: $slate;
     margin: 0;
@@ -111,6 +106,68 @@ ul.legacy-progression-list{
     align-items: center;
     .name{
       margin-left: 10px;
+    }
+  }
+}
+
+.profile-pvp{
+  margin-top: 30px;
+  @include medwidth(){
+    margin-top: 0;
+  };
+  .highest-personal-rating{
+    text-align: center;
+    margin-bottom: 10px;
+    span{
+      display: block;
+      margin: 5px auto;
+      font-size: 1.5em;
+      font-family: $montserrat;
+      font-weight: bold;
+    }
+  }
+  .rankings{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: flex-start;
+    text-align: center;
+    li{
+      display: inline-block;
+      flex: 1 0 auto;
+      padding: 5px;
+      margin: 0 5px;
+      border: 1px solid #f1f1f1;
+      border-radius: 5px;
+    }
+    span{
+      display: block;
+      margin: 5px auto;
+      font-size: 1.3em;
+      font-family: $montserrat;
+      font-weight: bold;
+    }
+  }
+  .statistics{
+    list-style-type: none;
+    margin: 0;
+    padding: 15px;
+    li{
+      margin: 5px 0;
+    }
+    span{
+      padding: 2px 5px;
+      background-color: $slate;
+      color: $white;
+      border-radius: 2px;
+      margin: 0 10px 0 20px;
+      font-family: $montserrat;
+      font-weight: bold;
+      letter-spacing: 1px;
+      min-width: 40px;
+      text-align: center;
+      display: inline-block;
     }
   }
 }

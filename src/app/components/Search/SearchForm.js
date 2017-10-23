@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { withRouter } from 'react-router';
 
-import { bnet } from '../../config/constants';
+import { realms } from '../../config/data_resources';
 
 class SearchForm extends Component{
 
@@ -12,28 +11,9 @@ class SearchForm extends Component{
     this.state = {
       region: 'us',
       locale: 'en_US',
-      realms: [],
+      realms: realms,
       realm: 'bleeding-hollow'
     }
-
-    this._getAvailableRealms = this._getAvailableRealms.bind(this)
-  }
-
-  _getAvailableRealms(region){
-    const self = this;
-
-    axios.get(`https://${region}.api.battle.net/wow/realm/status`, {
-      params: {
-        apikey: bnet,
-        locale: this.state.locale
-      }
-    }).then(function(response) {
-      self.setState({
-        realms: response.data.realms
-      });
-    }).catch(function(error) {
-      console.log(error.response);
-    });
   }
 
   _changeRegion(e){
@@ -71,24 +51,12 @@ class SearchForm extends Component{
           locale: 'en_GB'
         })
     }
-    this._getAvailableRealms(region)
     return
   }
 
   _changeRealm(e){
     e.preventDefault()
     this.setState({realm: e.target.value})
-  }
-
-  componentDidMount(){
-
-    const matchRealm = (this.props.location.pathname).split('/')[2]
-
-    this.setState({
-      realm: matchRealm
-    })
-
-    this._getAvailableRealms(this.state.region)
   }
 
   _handleSubmit(e){
@@ -129,7 +97,8 @@ class SearchForm extends Component{
 
     return(
       <form className="search-form" onSubmit={this._handleSubmit.bind(this)}>
-        <input type="text" required placeholder="Player Name" ref={c => this._character = c} className="search-text" />
+        <div className="fields">
+          <input type="search" autoComplete="on" required placeholder="Player Name" ref={c => this._character = c} className="search-text" />
           <select ref={c => this._realm = c} value={this.state.realm} onChange={this._changeRealm.bind(this)}>
             {availableRealms}
           </select>
@@ -139,7 +108,10 @@ class SearchForm extends Component{
             <option value="kr">KR</option>
             <option value="tw">TW</option>
           </select>
-        <button type="submit"><i className="fa fa-search"></i></button>
+        </div>
+        <div className="submit">
+          <button type="submit"><i className="fa fa-search"></i>Search</button>
+        </div>
       </form>
     );
   }

@@ -1,13 +1,106 @@
 .site-footer{
-  margin: 40px auto 20px;
-  font-family: $lato;
-  .center{
-    text-align: center;
-  }
+  margin: 40px auto 0;
+  background-color: $slate;
+  font-family: $openSans;
   .fa-heart{
     color: $cherry;
   }
-  a{
-    color: $blueberry;
+  .text-left a{
+    color: $white;
+  }
+  .information{
+    padding: 30px 15px 15px;
+    @include medwidth(){
+      padding: 30px 15px;
+    };
+    p{
+      color: $white;
+    }
+  }
+  .copyright{
+    text-align: center;
+    padding: 15px 15px 0;
+    @include medwidth(){
+      text-align: right;
+    };
+  }
+  form label{
+    color: $white;
+    font-family: $montserrat;
+    font-weight: bold;
+    font-size: 1.5em;
+  }
+  form p{
+    font-size: 1em;
+    margin: 5px 0 15px 0;
+  }
+  form .btn{
+    background-color: $blueberry;
+    color: $white;
+    border: 1px solid darken($blueberry, 10);
+    @include depth;
+    font-weight: bold;
+    display: block;
+    width: 100%;
+    @include medwidth(){
+      display: inline-block;
+      text-align: left;
+      width: auto;
+    };
+  }
+  .meta{
+    background-color: darken($slate, 2.5);
+    padding: 10px 0;
+    p{
+      margin: 5px;
+      color: $white;
+      height: 30px;
+      line-height: 30px;
+      font-family: $montserrat;
+      text-align: center;
+      @include medwidth(){
+        margin: 0;
+        text-align: left;
+      };
+    }
+    .mail, .patreon{
+      margin: 0 10px;
+      padding: 4px 8px;
+      border-radius: 2px;
+      display: inline-block;
+      @include depth;
+      font-weight: bold;
+      color: $white;
+      transition: all .1s ease-in;
+      @include medwidth(){
+        margin: 0 0 0 10px;
+      };
+      &:hover{
+        text-decoration: none;
+        opacity: .9;
+      }
+    }
+    .mail{
+      background-color: $seaGreen;
+    }
+    .patreon{
+      background-color: $orange;
+    }
+  }
+  .actions{
+    text-align: center;
+    height: 30px;
+    @include medwidth(){
+      text-align: right;
+    };
+    i, img{
+      margin-right: 5px;
+    }
+    img{
+      position: relative;
+      top: -1px;
+      width: 14px;
+      max-width: 14px;
+    }
   }
 }

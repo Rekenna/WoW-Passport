@@ -45,7 +45,7 @@ class ProfilePage extends Component{
     axios.get(`https://${region}.api.battle.net/wow/character/${realm}/${character}`, {
       params: {
         apikey: bnet,
-        fields: 'stats,talents,statistics,guild,items,progression,pvp,feed,titles,reputation,professions,achievements'
+        fields: 'stats,talents,statistics,guild,items,progression,pvp,feed,professions,achievements'
       }
     }).then(function(response) {
       let data = response.data
@@ -66,7 +66,7 @@ class ProfilePage extends Component{
 
     switch (this.state.progress) {
       case 'done':
-        content = (<ProfileContainer character={this.state.player} region={this.state.region}/>);
+        content = (<ProfileContainer characterData={this.state.player} region={this.state.region}/>);
         break;
       case 'error':
         content = (<NotFound/>);

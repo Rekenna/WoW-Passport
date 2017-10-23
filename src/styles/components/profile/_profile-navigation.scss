@@ -1,0 +1,16 @@
+.profile-navigation{
+  @include depth;
+  padding: 15px 0;
+}
+
+ul.profile-menu, ul.profile-links{
+  display: block;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  text-align: center;
+  li{
+    display: inline-block;
+    margin: 0 15px;
+  }
+}

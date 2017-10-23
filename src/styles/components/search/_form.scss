@@ -1,32 +1,63 @@
 .search-form{
-  display: flex;
-  align-items: center;
-  height: 30px;
-  background-color: $white;
-  border-radius: 5px;
-  box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
-  overflow: hidden;
-  margin-top: 8px;
+  width: 100%;
+  margin-top: 15px;
+  @include smwidth(){
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 30px;
+  }
+  @include medwidth(){
+    margin-top: 0;
+  }
   input,select,button{
     height: 30px;
     border: 0;
     padding: 5px 10px;
-    max-width: 140px;
+    border-radius: 0;
+    -webkit-appearance: none;
   }
+
+  .fields{
+    width: 100%;
+    overflow: hidden;
+    border-radius: 2px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    display: flex;
+    margin-bottom: 10px;
+    @include smwidth(){
+      align-items: center;
+      margin-bottom: 0;
+      justify-content: flex-end;
+    }
+  }
+
+  .submit{
+    min-width: 120px;
+    @include smwidth(){
+      padding-left: 10px;
+    }
+  }
+
   input{
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
     flex: 1 0 auto;
+    @include smwidth(){
+      min-width: 200px;
+    }
   }
 
   button{
-    background-color: $moss;
+    background-color: $seaGreen;
     color: $white;
     min-width: 30px;
-    flex: 1;
-  }
-  @media (min-width: 992px) {
-    margin-top: 0;
-    input,select,button{
-      max-width: 100%;
+    width: 100%;
+    border-radius: 2px;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12), 0 2px 4px -1px rgba(0,0,0,0.3);
+    padding: 0 10px;
+    i{
+      margin-right: 10px;
     }
   }
 }

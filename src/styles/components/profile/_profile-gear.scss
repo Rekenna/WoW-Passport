@@ -87,14 +87,18 @@ ul.gear-list {
 
   img {
     border-radius: 5px;
-    max-width: 40px;
+    max-width: 30px;
     height: auto;
     border-radius: 5px;
+    @include medwidth(){
+      max-width: 40px;
+    };
   }
 
   .gear-piece {
     max-width: 100%;
     display: block;
+    position: relative;
 
     &.poor img {
       border: 1px solid $poor;
@@ -127,6 +131,21 @@ ul.gear-list {
     &.heirloom img {
       border: 1px solid $heirloom;
     }
+
+    &.artifact .itemLevel{
+      bottom: 0;
+    }
+  }
+
+  .itemLevel{
+    position: absolute;
+    bottom: 5px;
+    right: 3px;
+    color: $white;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 2px #000;
+    font-size: .8em;
+    font-weight: bold;
   }
 }
 
@@ -139,6 +158,7 @@ ul.talent-list {
   padding: 0;
   margin: 0;
   text-align: right;
+  z-index: 300;
 
   li {
     display: inline-block;
