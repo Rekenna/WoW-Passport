@@ -37,10 +37,10 @@ export function getRealmSlug(characterRealm){
   let realmSlug;
   realms.map((realm, index) =>{
     if(realm.name === characterRealm){
-      return realmSlug = realm.slug
+      return realmSlug = realm.slug.replace(/\s/g,'-').toLowerCase()
     }
     else{
-      return realmSlug = characterRealm.replace(' ', '-').replace('\'', '').toLowerCase()
+      return realmSlug = characterRealm.replace(/\s/g,'-').toLowerCase()
     }
   })
   return realmSlug

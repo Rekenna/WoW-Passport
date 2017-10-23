@@ -8,7 +8,7 @@ export default class WarcraftLogs extends Component{
     super(props);
 
     this.state = {
-      logs: {},
+      logs: [],
       loaded: false,
       error: false
     }
@@ -26,15 +26,15 @@ export default class WarcraftLogs extends Component{
     const self = this;
 
     let url = `https://www.warcraftlogs.com:443/v1/rankings/character/${character.name}/${character.realm_slug}/${character.region}`
-    axios.get( url.toLowerCase(), {
+
+    axios.get( url, {
       params: {
         api_key: wcl
       }
     }).then(function(response) {
       self.setState({logs: response.data, loaded: true, error: false})
     }).catch(function(error) {
-      // console.log(error);
-      self.setState({logs: {}, loaded: false, error: true})
+      self.setState({loaded: false, error: true})
     });
   }
 
@@ -105,11 +105,17 @@ function averagePerformance(performances, difficulty) {
 
   const encountersToAverage = encounters.filter(encounter => encounter.difficulty === difficulty)
 
-  const average = 100 - (encountersToAverage.map((encounter, i) => {
-    return ((encounter.rank / encounter.outOf) * 100)
-  }).reduce(getSum) / encountersToAverage.length);
+  if (encountersToAverage.length > 0) {
+    const average = 100 - (encountersToAverage.map((encounter, i) => {
+      return ((encounter.rank / encounter.outOf) * 100)
+    }).reduce(getSum) / encountersToAverage.length);
 
-  return Math.floor(average);
+    return Math.floor(average);
+  }
+  else{
+    return 0;
+  }
+
 }
 
 function getSum(total, num) {
