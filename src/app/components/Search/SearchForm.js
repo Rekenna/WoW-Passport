@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
 
-import { realms } from '../../config/data_resources';
+import { realms } from '../../config/realms';
 
 class SearchForm extends Component{
 
@@ -11,7 +11,7 @@ class SearchForm extends Component{
     this.state = {
       region: 'us',
       locale: 'en_US',
-      realms: realms,
+      realms: realms.us,
       realm: 'bleeding-hollow'
     }
   }
@@ -24,24 +24,28 @@ class SearchForm extends Component{
       case 'us':
         this.setState({
           region: region,
+          realms: realms.us,
           locale: 'en_US'
         })
         break;
       case 'eu':
         this.setState({
           region: region,
+          realms: realms.eu,
           locale: 'en_GB'
         })
         break;
       case 'kr':
         this.setState({
           region: region,
+          realms: realms.kr,
           locale: 'ko_KR'
         })
         break;
       case 'tw':
         this.setState({
           region: region,
+          realms: realms.tw,
           locale: 'zh_TW'
         })
         break;

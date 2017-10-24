@@ -1,4 +1,4 @@
-import {realms} from '../../config/data_resources';
+import {realms} from '../../config/realms';
 
 export function formatCharacterData(characterData, region){
   let formattedData = characterData;
@@ -7,7 +7,7 @@ export function formatCharacterData(characterData, region){
   formattedData['gender'] = determineGender(characterData.gender)
   formattedData['race'] = determineRace(characterData.race)
   formattedData['faction'] = determineFaction(characterData.faction)
-  formattedData['realm_slug'] = getRealmSlug(characterData.realm)
+  formattedData['realm_slug'] = getRealmSlug(characterData.realm, region)
   formattedData['region'] = region.toLowerCase()
   formattedData['urls'] = getLinks(formattedData)
   formattedData['renders'] = getRenders(formattedData)
@@ -33,9 +33,9 @@ function determineGender(gender){
   }
 }
 
-export function getRealmSlug(characterRealm){
+export function getRealmSlug(characterRealm, region){
   let realmSlug;
-  realms.map((realm, index) =>{
+  realms[region].map((realm, index) =>{
     if(realm.name === characterRealm){
       return realmSlug = realm.slug.replace(/\s/g,'-').toLowerCase()
     }
