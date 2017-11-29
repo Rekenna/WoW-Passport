@@ -13,11 +13,15 @@
   input,select,button{
     height: 30px;
     border: 0;
-    padding: 5px 10px;
+    padding: 5px;
+    min-width: 40px;
     border-radius: 0;
     -webkit-appearance: none;
+    -moz-appearance: none;
     flex-grow: 1;
     margin-bottom: 2px;
+    text-indent: .01px;
+    text-overflow: '';
     @include smwidth(){
       margin-bottom: 0;
       flex-grow: 0;
