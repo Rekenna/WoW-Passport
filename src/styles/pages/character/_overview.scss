@@ -1,0 +1,291 @@
+.character-stats{
+  margin: 0 0 .75em 0;
+  width: 100%;
+  border-radius: .25em;
+  border: 1px solid $cement;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .stat-icon{
+    width: 100%;
+    svg{
+      font-size: 1.5em;
+      margin-bottom: .25em;
+    }
+  }
+  .stat{
+    display: block;
+    flex: 1 0 auto;
+    text-align: center;
+  }
+  @media (min-width: 992px) {
+    display: block;
+  }
+  strong{
+    margin: .25em auto 1em auto;
+    display: block;
+    font-size: .8em;
+    font-family: $openSans;
+    font-weight: 300;
+  }
+  p{
+    margin: 0;
+    line-height: 1;
+    font-size: 1em;
+    text-transform: uppercase;
+    font-family: $montserrat;
+    font-weight: bold;
+  }
+  small{
+    font-size: .65em;
+    float: right;
+  }
+  .health{
+    color: #27CC4E;
+  }
+  .primary{
+    color: #EE4266;
+  }
+  .mastery{
+    color: #9256FF;
+  }
+  .haste{
+    color: #0ED59B;
+  }
+  .critical{
+    color: #E01C1C;
+  }
+  .versatility{
+    color: #BFBFBF;
+  }
+}
+
+.appearance-wrapper {
+  width: 100%;
+  height: auto;
+  position: relative;
+  border-radius: 5px;
+  overflow: hidden;
+  border: 1px solid $space;
+
+  .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    box-shadow: inset 0 0 100px 30px rgba($space, .75);
+    z-index: 3;
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.gear-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .gear-list.center {
+    align-self: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: -20px;
+
+    .gear-piece {
+      margin: 0 5px;
+    }
+  }
+  .artifact-power{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    p{
+      margin: 5px auto;
+      color: $artifact;
+    }
+  }
+}
+
+ul.gear-list {
+  flex-direction: row;
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+
+  &.left img,
+  &.right img {
+    margin: 5px 0 5px auto;
+  }
+
+  &.right .gear-piece {
+    text-align: right;
+  }
+
+  &.center img {
+    margin: auto;
+  }
+
+  img {
+    border-radius: 5px;
+    max-width: 30px;
+    height: auto;
+    border-radius: 5px;
+    @include medwidth(){
+      max-width: 40px;
+    };
+  }
+
+  .gear-piece {
+    max-width: 100%;
+    display: block;
+    position: relative;
+
+    &.poor img {
+      border: 1px solid $poor;
+    }
+
+    &.common img {
+      border: 1px solid $common;
+    }
+
+    &.uncommon img {
+      border: 1px solid $uncommon;
+    }
+
+    &.rare img {
+      border: 1px solid $rare;
+    }
+
+    &.epic img {
+      border: 1px solid $epic;
+    }
+
+    &.legendary img {
+      border: 1px solid $legendary;
+    }
+
+    &.artifact img {
+      border: 1px solid $artifact;
+    }
+
+    &.heirloom img {
+      border: 1px solid $heirloom;
+    }
+
+    &.artifact .itemLevel{
+      bottom: 0;
+    }
+  }
+
+  .itemLevel{
+    position: absolute;
+    bottom: 5px;
+    right: 3px;
+    color: $white;
+    text-rendering: optimizeLegibility;
+    text-shadow: 1px 1px 2px #000;
+    font-size: .8em;
+    font-weight: bold;
+  }
+}
+
+ul.talent-list {
+  position: absolute;
+  top: 15px;
+  left: 50%;
+  transform: translateX(-50%);
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  text-align: right;
+  z-index: 300;
+
+  li {
+    display: inline-block;
+    margin-left: 3px;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 2px;
+  }
+
+  .talent img {
+    border: 1px solid $cherry;
+  }
+}
+
+.tooltip {
+  .tooltip-inner{
+    max-width: 300px;
+    padding: 3px 8px;
+    color: #fff;
+    text-align: left;
+    background-color: #000;
+    border-radius: 4px;
+  }
+  h5{
+    font-size: 1.1em;
+  }
+  &.poor {
+    h5 {
+      color: $poor;
+    }
+  }
+
+  &.common {
+    h5 {
+      color: $common;
+    }
+  }
+
+  &.uncommon {
+    h5 {
+      color: $uncommon;
+    }
+  }
+
+  &.rare {
+    h5 {
+      color: $rare;
+    }
+  }
+
+  &.epic {
+    h5 {
+      color: $epic;
+    }
+  }
+
+  &.legendary {
+    h5 {
+      color: $legendary;
+    }
+  }
+
+  &.artifact {
+    h5 {
+      color: $artifact;
+    }
+  }
+
+  &.heirloom {
+    h5 {
+      color: $heirloom;
+    }
+  }
+}

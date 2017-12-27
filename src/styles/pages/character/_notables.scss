@@ -1,0 +1,52 @@
+.notables-container{
+  margin-top: 30px;
+  .notable-achievements{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  .title{
+    font-family: $montserrat;
+    font-weight: bold;
+    border-bottom: 1px solid $slate;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+  }
+  li{
+    display: flex;
+    align-items: flex-start;
+    border: 2px solid $slate;
+    border-radius: 2px;
+    padding: .25em;
+    margin-bottom: 10px;
+    background-color: $slate;
+    &.incomplete{
+      background-color: lighten(rgba($slate, .5), 30);
+      border: 2px dashed $slate;
+      color: $slate;
+      opacity: .65;
+    }
+    &.complete{
+      color: $white;
+      @include depth;
+    }
+  }
+  h5{
+    margin: 0 auto;
+    font-family: $montserrat;
+    font-weight: bold;
+    font-size: 1em;
+  }
+  .achievement-content{
+    padding: 5px 15px;
+  }
+  .icon-wrapper{
+    width: 45px;
+    height: 45px;
+    img{
+      width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+  }
+}

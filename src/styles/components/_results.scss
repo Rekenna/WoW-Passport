@@ -1,0 +1,135 @@
+.result{
+  min-width: 200px;
+  color: $white;
+  padding: .125em;
+  flex: 1 0 50%;
+  a{
+    display: block;
+    background-color: lighten($space, 5);
+    color: $white;
+    padding: .5em;
+    transition: all .2s ease;
+    &:hover{
+      background-color: lighten($space, 3);
+      text-decoration: none;
+    }
+    .region{
+      margin-left: .75em;
+      margin-right: .25em;
+    }
+    .realm, .region{
+      text-transform: uppercase;
+      font-size: .85em;
+    }
+    .name{
+      font-weight: bold;
+      font-family: $montserrat;
+      &.alliance{
+        color: $blizzard;
+      }
+      &.horde{
+        color: $orange;
+      }
+    }
+  }
+  .class-icon{
+    float: left;
+    width: 22px;
+    height: 22px;
+    background-size: contain;
+    margin-right: .5em;
+    &.death-knight{
+      background-image: url('../assets/icons/death-knight.png');
+    }
+    &.demon-hunter{
+      background-image: url('../assets/icons/demon-hunter.png');
+    }
+    &.druid{
+      background-image: url('../assets/icons/druid.png');
+    }
+    &.hunter{
+      background-image: url('../assets/icons/hunter.png');
+    }
+    &.mage{
+      background-image: url('../assets/icons/mage.png');
+    }
+    &.monk{
+      background-image: url('../assets/icons/monk.png');
+    }
+    &.paladin{
+      background-image: url('../assets/icons/paladin.png');
+    }
+    &.priest{
+      background-image: url('../assets/icons/priest.png');
+    }
+    &.rogue{
+      background-image: url('../assets/icons/rogue.png');
+    }
+    &.shaman{
+      background-image: url('../assets/icons/shaman.png');
+    }
+    &.warlock{
+      background-image: url('../assets/icons/warlock.png');
+    }
+    &.warrior{
+      background-image: url('../assets/icons/warrior.png');
+    }
+  }
+  .avatar-wrapper {
+    position: relative;
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    margin-right: 15px;
+
+    img {
+      @include depth;
+      width: 40px;
+      height: auto;
+    }
+  }
+}
+
+.loading-results{
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding: 1em;
+  .loading-message{
+    margin: .5em 0 0;
+  }
+  .loading-bar{
+    position: relative;
+    overflow: hidden;
+    height: 2px;
+    width: 100%;
+    border-radius: 1px;
+    &:before, &:after{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 2px;
+      width: 100%;
+    }
+    &:before{
+      background-color: $seaGreen;
+      animation: loadingBar 4s infinite forwards;
+      z-index: 2;
+    }
+    &:after{
+      background-color: lighten($space, 5);
+      z-index: 1;
+    }
+  }
+}
+
+@keyframes loadingBar {
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(100%);
+  }
+}

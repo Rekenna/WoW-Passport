@@ -1,0 +1,62 @@
+// Gear Colors
+$poor: #9d9d9d;
+$common: #ffffff;
+$uncommon: #1eff00;
+$rare: #0070dd;
+$epic: #a335ee;
+$legendary: #ff8000;
+$artifact: #e6cc80;
+$heirloom: #00ccff;
+
+.profile-section{
+  margin-top: 40px;
+  header{
+    font-size: 1.5em;
+    font-weight: bold;
+    font-family: $montserrat;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid $cement;
+    display: flex;
+    align-items: flex-end;
+    span{
+      margin-left: 15px;
+      color: $slate;
+      display: inline-block;
+      padding: 8px 10px;
+      border: 1px solid $cement;
+      font-size: .45em;
+      border-radius: 25px;
+      font-family: $openSans;
+    }
+    svg{
+      margin-right: .25em;
+    }
+  }
+}
+
+.shortlink-container{
+  margin-top: 30px;
+  padding: 15px;
+  border-radius: 5px;
+  background-color: $cherry;
+  text-align: center;
+  @include depth;
+  @include medwidth(){
+    margin-top: 0;
+  };
+  h5{
+    color: $white;
+    font-weight: bold;
+    font-family: $montserrat;
+    margin: 0 auto 15px auto;
+    font-size: 1.25em;
+  }
+  .input-group-addon{
+    background-color: darken(#eee, 10);
+    cursor: pointer;
+    &:hover{
+      background-color: darken(#eee, 20);
+    }
+  }
+}

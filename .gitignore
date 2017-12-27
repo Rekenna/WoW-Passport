@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+functions/node_modules
 
 # testing
 /coverage
@@ -18,9 +19,11 @@ src/app/config/constants.js
 .env.development.local
 .env.test.local
 .env.production.local
+.idea
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
 firebase-debug.log
+/src/client.js

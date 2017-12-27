@@ -1,0 +1,154 @@
+
+.raiderio-container{
+  text-align: center;
+  position: relative;
+  background-color: #72788D;
+  color: $white;
+  -webkit-transition: -webkit-box-shadow .25s;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: .25em;
+  padding: 15px;
+  margin: 15px 0;
+  font-weight: lighter;
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+  @include medwidth(){
+    margin: 0 0 30px;
+  };
+  img.wcl-logo{
+    max-width: 80px;
+  }
+  .disclaimer{
+    font-size: 12px;
+    margin: 15px auto;
+  }
+}
+
+.raiderio-loading, .raiderio-error{
+  text-align: center;
+  font-style: italic;
+  p{
+    margin: 15px auto 0 auto;
+  }
+}
+
+.raiderio-button{
+  display: block;
+  margin: 15px auto;
+  border: 1px solid $white;
+  max-width: 180px;
+  padding: 8px 15px;
+  color: white;
+  &:hover, &:focus{
+    background-color: $white;
+    text-decoration: none;
+    color: $slate;
+  }
+}
+
+.raiderio-success{
+  h5{
+    margin: 10px 0;
+    font-weight: lighter;
+    font-family: $montserrat;
+  }
+  ul.averages{
+    text-align: center;
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li{
+      margin: 0 10px;
+      text-align: center;
+    }
+    i{
+      font-size: 2.5em;
+      font-family: $openSans;
+      font-style: normal;
+    }
+    p{
+      margin: 0 10px;
+      font-family: $openSans;
+    }
+  }
+}
+
+
+.warcraftlogs-container{
+  text-align: center;
+  position: relative;
+  background-color: $slate;
+  color: $white;
+  -webkit-transition: -webkit-box-shadow .25s;
+  transition: -webkit-box-shadow .25s;
+  transition: box-shadow .25s;
+  transition: box-shadow .25s, -webkit-box-shadow .25s;
+  border-radius: .25em;
+  padding: 15px;
+  margin-bottom: 30px;
+  font-weight: lighter;
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
+  img.wcl-logo{
+    max-width: 80px;
+  }
+  .disclaimer{
+    font-size: 12px;
+    margin: 15px auto;
+  }
+}
+
+.wcl-loading, .wcl-error{
+  text-align: center;
+  font-style: italic;
+  p{
+    margin: 15px auto 0 auto;
+  }
+}
+
+.wcl-button{
+  display: block;
+  margin: 15px auto;
+  border: 1px solid $white;
+  max-width: 180px;
+  padding: 8px 15px;
+  color: white;
+  &:hover, &:focus{
+    background-color: $white;
+    text-decoration: none;
+    color: $slate;
+  }
+}
+
+.wcl-success{
+  h5{
+    margin: 10px 0;
+    font-weight: lighter;
+    font-family: $montserrat;
+  }
+  ul.averages{
+    text-align: center;
+    margin: 10px 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li{
+      margin: 0 10px;
+      text-align: center;
+    }
+    i{
+      font-size: 2.5em;
+      font-family: $openSans;
+      font-style: normal;
+    }
+    p{
+      margin: 0 10px;
+      font-family: $openSans;
+    }
+  }
+}
