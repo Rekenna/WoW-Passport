@@ -131,10 +131,10 @@ function getLinks(formattedData) {
     }
 
     let urls = {
-        'armory': (`https://worldofwarcraft.com/${locale}/character/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
-        'wowprogress': (`https://www.wowprogress.com/character/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
-        'raiderio': (`https://raider.io/characters/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase(),
-        'warcraftlogs': (`https://www.warcraftlogs.com/character/${formattedData.region}/${formattedData.realm_slug}/${formattedData.name}`).toLowerCase()
+        'armory': (`https://worldofwarcraft.com/${locale}/character/${formattedData.realm}/${formattedData.name}`).toLowerCase(),
+        'wowprogress': (`https://www.wowprogress.com/character/${formattedData.region}/${formattedData.realm}/${formattedData.name}`).toLowerCase(),
+        'raiderio': (`https://raider.io/characters/${formattedData.region}/${formattedData.realm}/${formattedData.name}`).toLowerCase(),
+        'warcraftlogs': (`https://www.warcraftlogs.com/character/${formattedData.region}/${formattedData.realm}/${formattedData.name}`).toLowerCase()
 
     }
     return urls
