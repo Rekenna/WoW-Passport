@@ -196,9 +196,6 @@
   select{
     appearance: none;
     color: #868E95;
-    &:active, &:focus, &:hover{
-      color: $white;
-    }
   }
   .realm-select{
     position: relative;
@@ -208,6 +205,7 @@
       top: 50%;
       transform: translateY(-50%);
       color: #868E95;
+      transition: all .1s ease;
     }
     &:hover .fa-sort{
       color: $white;
