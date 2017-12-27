@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-
-import {Tooltip, OverlayTrigger} from 'react-bootstrap';
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { faExternalLink } from '@fortawesome/fontawesome-pro-light'
+import {Tooltip} from 'reactstrap';
 
 export default class ProfileGear extends Component {
   render(){
@@ -113,21 +114,7 @@ class GearList extends Component{
   }
 
   _compileGearPiece(item, tooltipPosition, quality){
-
-    let tooltip = (
-      <Tooltip id={`${item.id}-tooltip`} className={`tooltip ${tooltipPosition} ${quality}`}>
-        <h5>{item.name}</h5>
-      </Tooltip>
-    );
-
-    return (
-      <OverlayTrigger key={item.id} placement={tooltipPosition} overlay={tooltip}>
-        <li key={item.id} className={`gear-piece ${this._getItemQuality(item.quality)} tooltip-${tooltipPosition}`}>
-          <img src={`https://render-us.worldofwarcraft.com/icons/56/${item.icon}.jpg`} alt={item.name}/>
-          <span className="itemLevel">{item.itemLevel}</span>
-        </li>
-      </OverlayTrigger>
-    );
+    return (<GearIcon item={item} key={item.id} tooltipPosition={tooltipPosition} quality={quality}/>);
   }
 
   _getItemQuality(quality){
@@ -172,4 +159,36 @@ class GearList extends Component{
     }
     return qualityName
   }
+}
+
+class GearIcon extends Component {
+    constructor(props) {
+        super(props);
+
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            tooltipOpen: false
+        };
+    }
+
+    toggle() {
+        this.setState({
+            tooltipOpen: !this.state.tooltipOpen
+        });
+    }
+
+    render() {
+        const {item, tooltipPosition, quality} = this.props;
+
+        return (
+            <li key={item.id} className={`gear-piece ${quality} tooltip-${tooltipPosition}`}>
+                <img src={`https://render-us.worldofwarcraft.com/icons/56/${item.icon}.jpg`} alt={item.name} id={`item-${item.id}`}/>
+                <span className="itemLevel">{item.itemLevel}</span>
+                <Tooltip toggle={this.toggle} target={`item-${item.id}`} isOpen={this.state.tooltipOpen} autohide={false} placement={tooltipPosition}>
+                    <h5 className={quality}>{item.name}</h5>
+                    <a href={`http://www.wowhead.com/item=${item.id}`} target="_blank">WoW Head <FontAwesomeIcon icon={faExternalLink}/></a>
+                </Tooltip>
+            </li>
+        );
+    }
 }

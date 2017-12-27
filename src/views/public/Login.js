@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
 
-import {auth} from '../../firebase';
+import {auth, googleProvider} from '../../client';
 
 class Login extends Component {
     constructor() {
@@ -21,12 +21,17 @@ class Login extends Component {
         });
     }
 
+    _googleLogin(e){
+        e.preventDefault();
+        auth.signInWithPopup(googleProvider);
+    }
+
     render() {
         const {from} = this.props.location.state || '/';
         const {redirectToReferrer} = this.state;
 
         return (
-            <div className="login content">
+            <div className="login-page">
                 <div className={`container`}>
                     <div className={`row`}>
                         <div className={`col-md-12`}>
@@ -52,6 +57,7 @@ class Login extends Component {
                                            onChange={e => this.setState({password: e.target.value})}/>
                                 </div>
                                 <button className={`btn btn-primary`} type="submit">Sign In</button>
+                                <button className={`btn btn-danger`} onClick={this._googleLogin.bind(this)} type="submit">Sign In with Google</button>
                             </form>
                         </div>
                     </div>

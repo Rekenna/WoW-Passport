@@ -230,16 +230,22 @@ ul.talent-list {
 }
 
 .tooltip {
-  .tooltip-inner{
     max-width: 300px;
-    padding: 3px 8px;
+  .tooltip-inner{
+    padding: .5em;
     color: #fff;
     text-align: left;
-    background-color: #000;
+    background-color: $space;
     border-radius: 4px;
   }
   h5{
     font-size: 1.1em;
+    font-weight: bold;
+    text-align: center;
+  }
+  a{
+    display: block;
+    text-align: center;
   }
   &.poor {
     h5 {

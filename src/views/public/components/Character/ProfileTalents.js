@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import {Tooltip, OverlayTrigger} from 'react-bootstrap';
+import {Tooltip} from 'reactstrap';
 
 export default class ProfileTalents extends Component {
   render(){
@@ -12,7 +12,7 @@ export default class ProfileTalents extends Component {
     let talentList;
 
     talentList = talents.map((talent, i) =>{
-      return(getTalentIcon(talent));
+      return(<TalentIcon talent={talent} index={i} key={talent.spell.id} />);
     });
 
     return(
@@ -23,15 +23,31 @@ export default class ProfileTalents extends Component {
   }
 }
 
-function getTalentIcon(talent) {
+class TalentIcon extends Component {
+    constructor(props) {
+        super(props);
 
-  let tooltip = <Tooltip id={`${talent.spell.id}-tooltip`}>
-    <strong>{talent.spell.name}: </strong>
-    {talent.spell.description}</Tooltip>;
+        this.toggle = this.toggle.bind(this);
+        this.state = {
+            tooltipOpen: false
+        };
+    }
 
-  return (
-    <OverlayTrigger key={talent.spell.id} placement="bottom" overlay={tooltip}>
-      <li className="talent tooltip-bottom"><img src={`https://render-us.worldofwarcraft.com/icons/56/${talent.spell.icon}.jpg`} alt={`talent ${talent.spell.name} thumbnail`}/></li>
-    </OverlayTrigger>
-  );
+    toggle() {
+        this.setState({
+            tooltipOpen: !this.state.tooltipOpen
+        });
+    }
+
+    render() {
+      const talent = this.props.talent;
+        return (
+            <li className={`talent`}>
+              <img id={`talent-${talent.spell.id}`} src={`https://render-us.worldofwarcraft.com/icons/56/${talent.spell.icon}.jpg`} alt={`talent ${talent.spell.name} thumbnail`}/>
+                <Tooltip placement="bottom" isOpen={this.state.tooltipOpen} autohide={false} target={`talent-${talent.spell.id}`} toggle={this.toggle}>
+                    <strong>{talent.spell.name}: </strong>{talent.spell.description}
+                </Tooltip>
+            </li>
+        );
+    }
 }

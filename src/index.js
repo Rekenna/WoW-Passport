@@ -9,10 +9,11 @@ import './styles/main.css';
 import SiteHeader from './views/includes/SiteHeader';
 // import PrivateLayout from './views/PrivateLayout';
 import PublicLayout from "./views/PublicLayout";
-
 import Character from "./views/public/Character";
 import Home from "./views/public/Home";
-
+import Search from "./views/public/Search";
+// import Login from "./views/public/Login";
+// import Register from "./views/public/Register";
 import {appVersion, gaCode, auth, storageKey, db} from './client';
 
 var ReactGA = require('react-ga');
@@ -81,9 +82,10 @@ class App extends Component {
         return (
             <Router history={this.props.history}>
                 <div id="App">
-                    <SiteHeader version={this.state.version} authed={false} changeRegion={this._changeRegion} region={this.state.region}/>
+                    <SiteHeader version={this.state.version} user={this.state.user} changeRegion={this._changeRegion} region={this.state.region}/>
                     <SwitchTracker>
                         <PublicRoute exact path="/" component={Home} region={this.state.region}/>
+                        <PublicRoute path="/search" component={Search} region={this.state.region}/>
                         <PublicRoute path="/:region/:realm/character/:name" component={Character}/>
                         {/*<NotAuthedRoute path="/login" component={Login}/>*/}
                         {/*<NotAuthedRoute path="/register" component={Register}/>*/}
@@ -98,6 +100,7 @@ class App extends Component {
 
 class SwitchTracker extends Switch {
     componentDidMount() {
+        window.scrollTo(0, 0)
         ReactGA.set({page: window.location.pathname + window.location.search});
         ReactGA.pageview(window.location.pathname + window.location.search);
     }
@@ -105,6 +108,11 @@ class SwitchTracker extends Switch {
     componentWillReceiveProps() {
         ReactGA.set({page: window.location.pathname + window.location.search});
         ReactGA.pageview(window.location.pathname + window.location.search);
+    }
+    componentDidUpdate(prevProps) {
+        if (this.props.location !== prevProps.location) {
+            window.scrollTo(0, 0)
+        }
     }
 }
 
@@ -124,14 +132,14 @@ const PublicRoute = ({ component: Component, ...rest }) => (
 //             </PublicLayout>
 //         ) : (
 //             <Redirect to={{
-//                 pathname: '/account/overview',
+//                 pathname: '/account',
 //                 state: { from: props.location }
 //             }}/>
 //         )
 //     )}/>
 // );
-//
-//
+
+
 // const AuthedRoute = ({ component: Component, user, account, ...rest }) => (
 //     <Route {...rest} render={props => (
 //         isAuthenticated() ? (
