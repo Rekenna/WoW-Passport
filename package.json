@@ -21,6 +21,7 @@
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.1.2",
     "react-scripts": "1.0.11",
+    "react-validation": "^3.0.7",
     "reactstrap": "^5.0.0-alpha.4",
     "request": "^2.83.0",
     "request-promise": "^4.2.2",

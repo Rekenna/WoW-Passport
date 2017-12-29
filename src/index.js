@@ -7,14 +7,15 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './styles/main.css';
 
 import SiteHeader from './views/includes/SiteHeader';
-// import PrivateLayout from './views/PrivateLayout';
+import PrivateLayout from './views/PrivateLayout';
 import PublicLayout from "./views/PublicLayout";
 import Character from "./views/public/Character";
 import Home from "./views/public/Home";
 import Search from "./views/public/Search";
-// import Login from "./views/public/Login";
-// import Register from "./views/public/Register";
-import {appVersion, gaCode, auth, storageKey, db} from './client';
+import Login from "./views/public/Login";
+import Register from "./views/public/Register";
+import Account from "./views/private/Account";
+import {appVersion, gaCode, auth, storageKey, db, isAuthenticated} from './client';
 
 var ReactGA = require('react-ga');
 ReactGA.initialize(gaCode);
@@ -87,9 +88,9 @@ class App extends Component {
                         <PublicRoute exact path="/" component={Home} region={this.state.region}/>
                         <PublicRoute path="/search" component={Search} region={this.state.region}/>
                         <PublicRoute path="/:region/:realm/character/:name" component={Character}/>
-                        {/*<NotAuthedRoute path="/login" component={Login}/>*/}
-                        {/*<NotAuthedRoute path="/register" component={Register}/>*/}
-                        {/*<AuthedRoute path="/account/:id" user={this.state.user} account={this.state.accountData}/>*/}
+                        <NotAuthedRoute path="/login" component={Login}/>
+                        <NotAuthedRoute path="/register" component={Register}/>
+                        <AuthedRoute path="/account" user={this.state.user} component={Account}/>
                         <Redirect to="/"/>
                     </SwitchTracker>
                 </div>
@@ -124,36 +125,36 @@ const PublicRoute = ({ component: Component, ...rest }) => (
     )}/>
 );
 
-// const NotAuthedRoute = ({ component: Component, ...rest }) => (
-//     <Route {...rest} render={props => (
-//         !isAuthenticated() ? (
-//             <PublicLayout {...props}>
-//                 <Component {...props}/>
-//             </PublicLayout>
-//         ) : (
-//             <Redirect to={{
-//                 pathname: '/account',
-//                 state: { from: props.location }
-//             }}/>
-//         )
-//     )}/>
-// );
+const NotAuthedRoute = ({ component: Component, ...rest }) => (
+    <Route {...rest} render={props => (
+        !isAuthenticated() ? (
+            <PublicLayout {...props}>
+                <Component {...props}/>
+            </PublicLayout>
+        ) : (
+            <Redirect to={{
+                pathname: '/account',
+                state: { from: props.location }
+            }}/>
+        )
+    )}/>
+);
 
 
-// const AuthedRoute = ({ component: Component, user, account, ...rest }) => (
-//     <Route {...rest} render={props => (
-//         isAuthenticated() ? (
-//             <PrivateLayout {...props} user={user} account={account}>
-//                 <Component {...props} user={user} account={account}/>
-//             </PrivateLayout>
-//         ) : (
-//             <Redirect to={{
-//                 pathname: '/login',
-//                 state: { from: props.location }
-//             }}/>
-//         )
-//     )}/>
-// );
+const AuthedRoute = ({ component: Component, user, ...rest }) => (
+    <Route {...rest} render={props => (
+        isAuthenticated() ? (
+            <PrivateLayout {...props} user={user}>
+                <Component {...props} user={user}/>
+            </PrivateLayout>
+        ) : (
+            <Redirect to={{
+                pathname: '/login',
+                state: { from: props.location }
+            }}/>
+        )
+    )}/>
+);
 
 
 ReactDOM.render(

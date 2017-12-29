@@ -41,7 +41,7 @@ export default class SiteFooter extends Component {
                                 <div className="actions">
                                     <a className="mail" href="mailto:ryanpatmckenna@gmail.com">
                                         <FontAwesomeIcon icon={faEnvelope}/>Send Feedback</a>
-                                    <a className="patreon" href="https://www.patreon.com/rekenna" rel="noopener noreferrer" target="_blank"><img className="patreon-logo" src={PatreonLogo} alt="Patreon Logo"/>Support Development</a>
+                                    <a className="patreon" href="https://www.patreon.com/wowpassport" rel="noopener noreferrer" target="_blank"><img className="patreon-logo" src={PatreonLogo} alt="Patreon Logo"/>Support Development</a>
                                 </div>
                             </div>
                         </div>
