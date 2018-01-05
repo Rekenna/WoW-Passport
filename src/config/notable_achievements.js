@@ -32,6 +32,26 @@ export const notableAchievements = [
         "accountWide": false,
         "factionId": 2
     }, {
+        "id": 12071,
+        "title": "Crucible's Promise",
+        "points": 10,
+        "description": "Fully unlock the power of the Netherlight Crucible on one of your artifact weapons.",
+        "rewardItems": [],
+        "icon": "ability_paladin_empoweredsealstruth",
+        "criteria": [{
+            "id": 29395,
+            "description": "",
+            "orderIndex": 0,
+            "max": 75
+        }, {
+            "id": 0,
+            "description": "Require Now You're Cooking With Netherlight",
+            "orderIndex": 1,
+            "max": 1
+        }],
+        "accountWide": false,
+        "factionId": 2
+    }, {
         "id": 11611,
         "title": "A Challenging Look",
         "points": 10,
@@ -73,28 +93,6 @@ export const notableAchievements = [
                 "id": 35643,
                 "description": "",
                 "orderIndex": 6,
-                "max": 1
-            }
-        ],
-        "accountWide": false,
-        "factionId": 2
-    }, {
-        "id": 11772,
-        "title": "Power Ascended",
-        "points": 10,
-        "description": "Unlock every Artifact Trait for a single artifact weapon after empowering it.",
-        "rewardItems": [],
-        "icon": "inv_artifact_xp05",
-        "criteria": [
-            {
-                "id": 0,
-                "description": "A Gift from the Six completed.",
-                "orderIndex": 0,
-                "max": 1
-            }, {
-                "id": 0,
-                "description": "Final Artifact Ability Obtained.",
-                "orderIndex": 1,
                 "max": 1
             }
         ],
