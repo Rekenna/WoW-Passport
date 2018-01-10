@@ -36,7 +36,10 @@ export default class ResultsList extends Component {
     _getResults() {
         const name = this.props.name;
         let filteredResults = this.state.searchable.filter(result => result.length >= name.length && result.name.toLowerCase().includes(name))
-        if (filteredResults.length > 0) {
+        let sortedResults = filteredResults.sort(function(a,b){
+            return a.length - b.length
+        });
+        if (sortedResults.length > 0) {
             return filteredResults.map((result) => {
                 return Result(result)
             });
