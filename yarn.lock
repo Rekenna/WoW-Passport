@@ -89,6 +89,16 @@
   version "0.2.5"
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.2.5.tgz#11ccb45505cb56d4bc0a9a09712b14585248e784"
 
+"@fortawesome/fontawesome-common-types@^0.1.1":
+  version "0.1.1"
+  resolved "https://npm.fontawesome.com/96849FEF-104B-4333-96F4-C9781CE63616/@fortawesome/fontawesome-common-types/-/fontawesome-common-types-0.1.1.tgz#28c78607ffd2d246abfcc09bacd28490952280af"
+
+"@fortawesome/fontawesome-free-brands@^5.0.4":
+  version "5.0.4"
+  resolved "https://npm.fontawesome.com/96849FEF-104B-4333-96F4-C9781CE63616/@fortawesome/fontawesome-free-brands/-/fontawesome-free-brands-5.0.4.tgz#764ceaefc44b5ec5ca5b549cfa51e8cc672f72b4"
+  dependencies:
+    "@fortawesome/fontawesome-common-types" "^0.1.1"
+
 "@fortawesome/fontawesome-pro-light@^5.0.2":
   version "5.0.2"
   resolved "https://npm.fontawesome.com/96849FEF-104B-4333-96F4-C9781CE63616/@fortawesome/fontawesome-pro-light/-/fontawesome-pro-light-5.0.2.tgz#9b3316ef2150ac8bc2ae050989840a958e2da7a6"

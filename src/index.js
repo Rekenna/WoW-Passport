@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import {BrowserRouter as Router, Switch, Redirect, Route} from 'react-router-dom';
+import {Helmet} from 'react-helmet';
 import {unregister} from './registerServiceWorker';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import './styles/main.css';
+import {discord} from './assets/discord.png';
 
 import SiteHeader from './views/includes/SiteHeader';
 import PrivateLayout from './views/PrivateLayout';
@@ -83,6 +85,14 @@ class App extends Component {
         return (
             <Router history={this.props.history}>
                 <div id="App">
+                    <Helmet>
+                        <title>WoW Passport - Player Lookup and Analysis</title>
+                        <meta property="og:title" content="WoW Passport" />
+                        <meta property="og:description" content="Quick player lookup & analysis for World of Warcraft." />
+                        <meta property="og:url" content="https://wowpassport.com" />
+                        <meta property="og:site_name" content="WoW Passport" />
+                        <meta property="og:image" content={discord} />
+                    </Helmet>
                     <SiteHeader version={this.state.version} user={this.state.user} changeRegion={this._changeRegion} region={this.state.region}/>
                     <SwitchTracker>
                         <PublicRoute exact path="/" component={Home} region={this.state.region}/>

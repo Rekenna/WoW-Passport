@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Link, withRouter} from 'react-router-dom'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { faGlobe, faSort } from '@fortawesome/fontawesome-pro-light'
+import {faDiscord} from "@fortawesome/fontawesome-free-brands/index";
 
 import {auth} from '../../client';
 import {realms} from "../../config/realms";
@@ -68,17 +69,21 @@ class SiteHeader extends Component {
                     <div className="container-fluid">
                         <div className="row flex-row">
                             <div className="col-3">
-                                <div className={`region-info`}>
-                                    <form action={`${this.props.region}/search`} className={`region-change`}>
-                                        <FontAwesomeIcon icon={faGlobe} />
-                                        <select ref={c => this.region = c} value={this.props.region} onChange={this._onChangeRegion.bind(this)}>
-                                            <option value="us">US</option>
-                                            <option value="eu">EU</option>
-                                            <option value="kr">KR</option>
-                                            <option value="tw">TW</option>
-                                        </select>
-                                        <FontAwesomeIcon icon={faSort} />
-                                    </form>
+                                <div className={`actions`}>
+                                    <div className={`region-info`}>
+                                        <form action={`${this.props.region}/search`} className={`region-change`}>
+                                            <FontAwesomeIcon icon={faGlobe} />
+                                            <select ref={c => this.region = c} value={this.props.region} onChange={this._onChangeRegion.bind(this)}>
+                                                <option value="us">US</option>
+                                                <option value="eu">EU</option>
+                                                <option value="kr">KR</option>
+                                                <option value="tw">TW</option>
+                                            </select>
+                                            <FontAwesomeIcon icon={faSort} />
+                                        </form>
+                                    </div>
+                                    <a className="discord" href="https://discord.gg/NNc3QcE">
+                                        <FontAwesomeIcon icon={faDiscord}/>Discord</a>
                                 </div>
                             </div>
                             <div className="col-9 d-none d-sm-block">
