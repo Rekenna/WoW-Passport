@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import {faDiscord} from '@fortawesome/fontawesome-free-brands';
 import {faEnvelope, faHeart} from "@fortawesome/fontawesome-pro-light/index.es";
 
 import PatreonLogo from '../../assets/patreon.svg'
@@ -39,6 +40,8 @@ export default class SiteFooter extends Component {
                             </div>
                             <div className="col-md-6">
                                 <div className="actions">
+                                    <a className="discord" href="https://discord.gg/NNc3QcE">
+                                        <FontAwesomeIcon icon={faDiscord}/>Discord</a>
                                     <a className="mail" href="mailto:ryanpatmckenna@gmail.com">
                                         <FontAwesomeIcon icon={faEnvelope}/>Send Feedback</a>
                                     <a className="patreon" href="https://www.patreon.com/wowpassport" rel="noopener noreferrer" target="_blank"><img className="patreon-logo" src={PatreonLogo} alt="Patreon Logo"/>Support Development</a>
