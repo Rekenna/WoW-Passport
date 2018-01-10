@@ -28,7 +28,7 @@ class App extends Component {
             version: appVersion,
             needsReload: false,
             user: null,
-            region: 'eu'
+            region: 'us'
         }
 
         this._changeRegion = this._changeRegion.bind(this)
@@ -36,14 +36,14 @@ class App extends Component {
 
     _detectLanguage(locale){
         switch (locale){
-            case 'en-US':
-                return this._changeRegion('us');
+            case 'en-GB':
+                return this._changeRegion('eu');
             case 'ko_KR':
                 return this._changeRegion('kr');
             case 'zh_TW':
                 return this._changeRegion('tw');
             default:
-                return this._changeRegion('eu');
+                return
         }
     }
 

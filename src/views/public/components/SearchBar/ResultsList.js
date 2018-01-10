@@ -7,37 +7,37 @@ export default class ResultsList extends Component {
         super();
 
         this.state = {
-            results: []
+            searchable: []
         }
 
-        this._getResults = this._getResults.bind(this)
-        this._fetchResults = this._fetchResults.bind(this)
+        this._getResults = this._getResults.bind(this);
+        this._fetchSearchable = this._fetchSearchable.bind(this);
     }
 
-    _fetchResults(name, region) {
+    _fetchSearchable(region){
         const self = this;
-        let searchableRef = db.collection(`searchable`)
-        searchableRef.where("region", "==", region).where("length", ">=", name.length).get()
+        let searchableRef = db.collection(`searchable`);
+        searchableRef.where("region", "==", region).get()
             .then(function (querySnapshot) {
-                let results = [];
+                let searchable = [];
                 querySnapshot.forEach(function (doc) {
-                    if(doc.data().name.toLowerCase().startsWith(name.toLowerCase())){
-                        results = results.concat([doc.data()]);
-                    }
+                    searchable = searchable.concat([doc.data()]);
                     return;
                 });
                 self.setState({
-                    results: results
+                    searchable: searchable
                 })
             })
             .catch(function (error) {
-                console.log("Error getting documents: ", error);
+                console.log("Error getting searchable documents: ", error);
             });
     }
 
     _getResults() {
-        if (this.state.results.length > 0) {
-            return this.state.results.map((result) => {
+        const name = this.props.name;
+        let filteredResults = this.state.searchable.filter(result => result.length >= name.length && result.name.toLowerCase().includes(name))
+        if (filteredResults.length > 0) {
+            return filteredResults.map((result) => {
                 return Result(result)
             });
         } else {
@@ -57,7 +57,12 @@ export default class ResultsList extends Component {
                 results: []
             })
         }
-        this._fetchResults(nextProps.name, nextProps.region);
+        if(nextProps.region !== this.props.region){
+            this._fetchSearchable(nextProps.region)
+        }
+    }
+    componentDidMount(){
+        this._fetchSearchable(this.props.region)
     }
 
     render() {
@@ -77,5 +82,5 @@ export default class ResultsList extends Component {
 
 ResultsList.defaultProps = {
     name: '',
-    region: 'eu'
+    region: 'us'
 }
