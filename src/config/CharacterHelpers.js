@@ -50,8 +50,18 @@ function determineRace(race) {
             return 'Worgen'
         case 24:
             return 'Pandaren'
+        case 25:
+            return 'Pandaren'
         case 26:
             return 'Pandaren'
+        case 27:
+            return 'Nightborne'
+        case 28:
+            return 'Highmountain Tauren'
+        case 29:
+            return 'Void Elf'
+        case 30:
+            return 'Lightforged Draenei'
         default:
             return 'None'
     }
