@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "wow-passport",
-    "production": "wow-passport"
+    "default": "wow-passport"
   }
 }

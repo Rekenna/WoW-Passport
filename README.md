@@ -1,5 +1,3 @@
-# WoW Passport - Alpha v1.3.0
+# WoW Passport
 
-### General Updates
-
-- Player Indexing! More to come soon in notes...
+Deprecated. RIP WoW Passport

@@ -1,40 +1,59 @@
 {
-  "name": "wowpassport",
-  "version": "1.2.0",
+  "name": "old-wowpassport",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@fortawesome/fontawesome": "^1.1.0",
-    "@fortawesome/fontawesome-free-brands": "^5.0.4",
-    "@fortawesome/fontawesome-pro-light": "^5.0.2",
-    "@fortawesome/react-fontawesome": "^0.0.17",
-    "axios": "^0.17.1",
-    "bootstrap": "4.0.0-beta.2",
-    "contentful": "^5.0.5",
-    "firebase": "^4.6.2",
-    "google-url": "^0.0.4",
-    "moment": "^2.20.1",
-    "node-sass-chokidar": "^0.0.3",
-    "npm-run-all": "^4.0.2",
-    "numeral": "^2.0.6",
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1",
-    "react-ga": "^2.3.5",
-    "react-helmet": "^5.2.0",
-    "react-router-dom": "^4.1.2",
-    "react-scripts": "1.0.11",
-    "react-validation": "^3.0.7",
-    "reactstrap": "^5.0.0-alpha.4",
-    "request": "^2.83.0",
-    "request-promise": "^4.2.2",
-    "showdown": "^1.8.6"
+    "@emotion/babel-preset-css-prop": "^10.0.9",
+    "@emotion/core": "^10.0.10",
+    "@emotion/styled": "^10.0.10",
+    "babel-plugin-emotion": "^10.0.9",
+    "contentful": "^7.5.0",
+    "emotion-theming": "^10.0.10",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.0",
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8",
+    "showdown": "^1.9.0",
+    "typography": "^0.16.19",
+    "typography-theme-funston": "^0.16.19"
   },
   "scripts": {
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
-    "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
     "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ],
+  "babel": {
+    "presets": [
+      "react",
+      "@emotion/babel-preset-css-prop"
+    ],
+    "env": {
+      "production": {
+        "plugins": [
+          "emotion"
+        ]
+      },
+      "development": {
+        "plugins": [
+          [
+            "emotion",
+            {
+              "sourceMap": true
+            }
+          ]
+        ]
+      }
+    }
   }
 }
