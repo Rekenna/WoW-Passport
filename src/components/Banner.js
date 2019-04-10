@@ -17,6 +17,7 @@ const Splash = styled.div`
     font-family: "Cabin Condensed", "georgia", sans-serif;
     color: ${props => props.theme.colors.white};
     z-index: 2;
+    width: calc(100% - 2rem);
   }
   &::after {
     content: "";

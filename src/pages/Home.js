@@ -19,32 +19,25 @@ const Footer = styled.div`
 
 class Home extends Component {
   state = {
-    posts: []
+    post: false
   };
   componentDidMount() {
     client
-      .getEntries({
-        order: "-sys.createdAt",
-        content_type: "post",
-        "fields.relatedProject.sys.contentType.sys.id": "project",
-        "fields.relatedProject.fields.title[match]": "WoW Passport"
-      })
+      .getEntry("6O1WJL95aGinX278Vd5ut7")
       .then(response => {
         this.setState({
-          posts: response.items
+          post: response
         });
       })
       .catch(console.error);
   }
   render() {
-    const { posts } = this.state;
+    const { post } = this.state;
     return (
       <div>
         <Banner />
         <Main>
-          {posts.map(post => (
-            <Post post={post} key={post.sys.id} />
-          ))}
+          {post ? <Post post={post} key={post.sys.id} /> : <p>Loading...</p>}
         </Main>
         <Footer>
           <a
