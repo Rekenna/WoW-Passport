@@ -41,6 +41,7 @@ firebase-debug.log
 
 # production
 /build
+.firebase/
 
 # misc
 .DS_Store
@@ -52,3 +53,4 @@ firebase-debug.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.cache
